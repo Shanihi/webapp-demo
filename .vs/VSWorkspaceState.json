@@ -1,0 +1,11 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\modules",
+    "\\modules\\appService",
+    "\\modules\\webApp",
+    "\\Registries"
+  ],
+  "SelectedNode": "\\Registries\\test.bicep",
+  "PreviewInSolutionExplorer": false
+}
