@@ -5,8 +5,9 @@
     "appServicePlan": {
       "value": {
         "name": "demo-app-service-plan",
+        "kind": "linux",
         "sku": {
-          "name": "B1",
+          "name": "standard",
           "tier": "Basic"
         }
       }
@@ -15,8 +16,8 @@
       "value": {
         "name": "demo-app-service-rg",
         "tags": {
-          "ApplicationName": "",
-          "Description": "",
+          "ApplicationName": "Demo WebApp Shan",
+          "Description": "Demo WebApp created by Shan",
           "Environment": "Dev"
         }
       }

@@ -2,10 +2,8 @@
   "ExpandedNodes": [
     "",
     "\\modules",
-    "\\modules\\appService",
-    "\\modules\\webApp",
-    "\\Registries"
+    "\\registries"
   ],
-  "SelectedNode": "\\Registries\\test.bicep",
+  "SelectedNode": "\\bicepconfig.json",
   "PreviewInSolutionExplorer": false
 }

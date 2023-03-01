@@ -1,5 +1,6 @@
 param appServicePlanNameParam string
 param appServicePlanSkuParam object
+param appServiceKindParam string
 param environmentParam string
 
 var appServicePlanName = '${appServicePlanNameParam}-${environmentParam}'
@@ -8,7 +9,7 @@ var location = resourceGroup().location
 resource appServicePlan 'Microsoft.Web/serverfarms@2020-12-01' = {
   name: appServicePlanName
   location: location
-  kind: 'linux'
+  kind: appServiceKindParam
   properties: {
     reserved: true
   }

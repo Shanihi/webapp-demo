@@ -10,17 +10,19 @@ resource rg 'Microsoft.Resources/resourceGroups@2021-04-01' = {
   tags: resGroup.tags
 }
 
-module appPlan 'modules/appService/appServicePlan.bicep' = {
+
+module appPlan 'br/CoreModules:appserviceplan:v1.0' = {
   scope: rg
   name: appServicePlan.name
   params: {
     appServicePlanNameParam: appServicePlan.name
     appServicePlanSkuParam: appServicePlan.sku
     environmentParam: resGroup.tags.Environment
+    appServiceKindParam: appServicePlan.kind
   }
 }
 
-module app 'modules/webApp/webApp.bicep' = {
+module app 'br/CoreModules:web-app:v1.0' = {
   scope: rg
   name: webApp.name
   params: {
