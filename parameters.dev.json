@@ -2,16 +2,6 @@
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
-    "appServicePlan": {
-      "value": {
-        "name": "demo-app-service-plan",
-        "kind": "linux",
-        "sku": {
-          "name": "standard",
-          "tier": "Basic"
-        }
-      }
-    },
     "resGroup": {
       "value": {
         "name": "demo-app-service-rg",
@@ -22,10 +12,32 @@
         }
       }
     },
+    "appServicePlan": {
+      "value": {
+        "name": "demo-app-service-plan",
+        "kind": "linux",
+        "sku": {
+          "name": "standard",
+          "tier": "Basic"
+        }
+      }
+    },
     "webApp": {
       "value": {
         "name": "bicep-demo-webapp-shan",
         "linuxFxVersion": "DOCKER|mcr.microsoft.com/appsvc/staticsite:latest"
+      }
+    },
+    "sqlServer": {
+      "value": {
+        "name": "server-shan",
+        "administratorLogin": "",
+        "administratorLoginPassword": ""
+      }
+    },
+    "sqlDB": {
+      "value": {
+        "name": "database-shan"
       }
     }
   }
