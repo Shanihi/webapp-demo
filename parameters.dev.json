@@ -8,7 +8,7 @@
         "tags": {
           "ApplicationName": "Demo WebApp Shan",
           "Description": "Demo WebApp created by Shan",
-          "Environment": "Dev"
+          "Environment": "dev"
         }
       }
     },

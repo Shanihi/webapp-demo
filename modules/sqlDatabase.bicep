@@ -25,7 +25,7 @@ param skuCapacityParam int
 param skuFamilyParam string 
 
 @description('Azure database for MySQL Sku Size ')
-param SkuSizeMBParam string 
+param skuSizeMBParam string 
 
 param sqlDBCreateModeParam string
 
@@ -75,8 +75,11 @@ var sqlDBName = '${sqlDBNameParam}-${environmentParam}'
 @description('Provide name for sql DB, suffixing server name with sql DB name ')
 var sqlDBFirewallName = '${sqlDBFirewallNameParam}-${environmentParam}'
 
+var deployServerEnabled = environmentParam == 'prod'
+var deploySqlDBEnabled = environmentParam == 'prod'
 
-resource sqlServer 'Microsoft.Sql/servers@2022-05-01-preview' = {
+
+resource sqlServer 'Microsoft.Sql/servers@2022-05-01-preview' = if(deployServerEnabled) {
   name: serverName
   location: location
 
@@ -95,7 +98,7 @@ resource sqlServer 'Microsoft.Sql/servers@2022-05-01-preview' = {
     
 }
 
-resource sqlDatabase 'Microsoft.Sql/servers/databases@2022-05-01-preview' = {
+resource sqlDatabase 'Microsoft.Sql/servers/databases@2022-05-01-preview' = if(deploySqlDBEnabled) {
   parent: sqlServer
   name: sqlDBName
   location: location
@@ -103,7 +106,7 @@ resource sqlDatabase 'Microsoft.Sql/servers/databases@2022-05-01-preview' = {
   sku: {
       name: sqlDBNameParam
       tier: skuTierParam
-      size: SkuSizeMBParam
+      size: skuSizeMBParam
       capacity: skuCapacityParam
       family: skuFamilyParam
   }

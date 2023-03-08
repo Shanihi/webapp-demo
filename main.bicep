@@ -57,7 +57,7 @@ module sqlDBserverModule 'br/CoreModules:sql-database-server:v1.1' = {
 
     sqlDBNameParam: sqlDB.name
     skuTierParam: sqlDB.sku.tier
-    SkuSizeMBParam: sqlDB.sku.size
+    skuSizeMBParam: sqlDB.sku.size
     skuCapacityParam: sqlDB.sku.capacity
     skuFamilyParam: sqlDB.sku.family
     sqlAutoPauseDelayParam: sqlDB.autoPauseDelay
