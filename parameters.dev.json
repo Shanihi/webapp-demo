@@ -31,13 +31,59 @@
     "sqlServer": {
       "value": {
         "name": "server-shan",
-        "administratorLogin": "",
-        "administratorLoginPassword": ""
+        "administratorLogin": "admin",
+        "administratorLoginPassword": "admin",
+        "version": "12.0",
+        "federatedClientId": "",
+        "keyId": "",
+        "minimalTlsVersion": "",
+        "primaryUserAssignedIdentityId": "",
+        "publicNetworkAccess": "",
+        "restrictOutboundNetworkAccess": ""
       }
     },
     "sqlDB": {
       "value": {
-        "name": "database-shan"
+        "name": "database-shan",
+        "sku": {
+          "name": "standard",
+          "tier": "Basic",
+          "size": "5120",
+          "capacity": 2,
+          "family": "Gen5"
+        },
+        "autoPauseDelay": -1,
+        "catalogCollation": "SQL_Latin1_General_CP1_CI_AS",
+        "collation": "SQL_Latin1_General_CP1_CI_AS",
+        "createMode": "Default",
+        "elasticPoolId": "",
+        "federatedClientId": "",
+        "highAvailabilityReplicaCount": 0,
+        "isLedgerOn": false,
+        "licenseType": "LicenseIncluded",
+        "longTermRetentionBackupResourceId": "",
+        "maintenanceConfigurationId": "",
+        "maxSizeBytes": 34359738368, 
+        "minCapacity": 2,
+        "preferredEnclaveType": "",
+        "readScale": "Disabled",
+        "recoverableDatabaseId": "",
+        "recoveryServicesRecoveryPointId": "",
+        "requestedBackupStorageRedundancy": "Zone",
+        "restorableDroppedDatabaseId": "",
+        "restorePointInTime": "",
+        "sampleName": "sampleSchemaName",
+        "secondaryType": "",
+        "sourceDatabaseDeletionDate": "",
+        "sourceDatabaseId": "",
+        "sourceResourceId": "",
+        "zoneRedundant": false,
+
+        "firewall": {
+          "name": "Firewall Shan",
+          "startIpAddress": "19.0.0.0",
+          "endIpAddress": "21.0.0.0"
+        }
       }
     }
   }

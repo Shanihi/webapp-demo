@@ -6,9 +6,12 @@ param resGroup object
 param sqlServer object
 param sqlDB object
 
+@description('Provide a location for the registry.')
+param deploymentLocation string = deployment().location
+
 resource rg 'Microsoft.Resources/resourceGroups@2021-04-01' = {
   name: resGroup.name
-  location: deployment().location
+  location: deploymentLocation
   tags: resGroup.tags
 }
 
@@ -35,15 +38,56 @@ module webAppModule 'br/CoreModules:web-app:v1.0' = {
   }
 }
 
-module sqlDBserverModule 'br/CoreModules:sql-database-server:v1.0' = {
+module sqlDBserverModule 'br/CoreModules:sql-database-server:v1.1' = {
   scope: rg
   name: sqlDB.name
   params: {
-    sqlDBNameParam: sqlDB.name
     environmentParam: resGroup.tags.Environment
-    appServicePlanSkuParam: appServicePlan.sku
+
     serverNameParam: sqlServer.name
     administratorLoginParam: sqlServer.administratorLogin
     administratorLoginPasswordParam: sqlServer.administratorLoginPassword
+    serverVersionParam: sqlServer.version
+    federatedClientIdParam: sqlServer.federatedClientId
+    keyIdParam: sqlServer.keyId
+    minimalTlsVersionPeram: sqlServer.minimalTlsVersion
+    primaryUserAssignedIdentityIdParam: sqlServer.primaryUserAssignedIdentityId
+    publicNetworkAccessParam: sqlServer.publicNetworkAccess
+    restrictOutboundNetworkAccessParam: sqlServer.restrictOutboundNetworkAccess
+
+    sqlDBNameParam: sqlDB.name
+    skuTierParam: sqlDB.sku.tier
+    SkuSizeMBParam: sqlDB.sku.size
+    skuCapacityParam: sqlDB.sku.capacity
+    skuFamilyParam: sqlDB.sku.family
+    sqlAutoPauseDelayParam: sqlDB.autoPauseDelay
+    sqlCatalogCollationParam: sqlDB.catalogCollation
+    sqlCollationParam: sqlDB.collation
+    sqlDBCreateModeParam: sqlDB.createMode
+    sqlElasticPoolIdParam: sqlDB.elasticPoolId
+    sqlFederatedClientIdParam: sqlDB.federatedClientId
+    sqlHighAvailabilityReplicaCountParam: sqlDB.highAvailabilityReplicaCount
+    sqlIsLedgerOnParam: sqlDB.isLedgerOn
+    sqlLicenseTypeParam: sqlDB.licenseType
+    sqlLongTermRetentionBackupResourceIdParam: sqlDB.longTermRetentionBackupResourceId
+    sqlMaintenanceConfigurationIdParam: sqlDB.maintenanceConfigurationId
+    sqlMaxSizeBytesParam: sqlDB.maxSizeBytes
+    sqlMinCapacityParam: sqlDB.minCapacity
+    sqlPreferredEnclaveTypeParam: sqlDB.preferredEnclaveType
+    sqlReadScaleParam: sqlDB.readScale
+    sqlRecoverableDatabaseIdParam: sqlDB.recoverableDatabaseId
+    sqlRecoveryServicesRecoveryPointIdParam: sqlDB.recoveryServicesRecoveryPointId
+    sqlRequestedBackupStorageRedundancyParam: sqlDB.requestedBackupStorageRedundancy
+    sqlRestorableDroppedDatabaseIdParam: sqlDB.restorableDroppedDatabaseId
+    sqlRestorePointInTimeParam: sqlDB.restorePointInTime
+    sqlSampleNameParam: sqlDB.sampleName
+    sqlSecondaryTypeParam: sqlDB.secondaryType
+    sqlSourceDatabaseDeletionDateParam: sqlDB.sourceDatabaseDeletionDate
+    sqlSourceDatabaseIdParam: sqlDB.sourceDatabaseId
+    sqlSourceResourceIdParam: sqlDB.sourceResourceId
+    sqlZoneRedundantParam: sqlDB.zoneRedundant
+    sqlDBFirewallNameParam: sqlDB.firewall.name
+    sqlStartIpAddressParam: sqlDB.firewall.startIpAddress
+    sqlEndIpAddressParam: sqlDB.firewall.endIpAddress
   }
 }
