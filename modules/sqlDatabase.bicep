@@ -67,7 +67,7 @@ param sqlStartIpAddressParam string
 param sqlEndIpAddressParam string
 
 @description('Provide unique name for sql DB server name')
-var serverName = 'sql-${uniqueString(serverNameParam)}-${resourceGroup().id}-${environmentParam}'
+var serverName = 'sql-${uniqueString(serverNameParam)}-${environmentParam}'
 
 @description('Provide name for sql DB, suffixing server name with sql DB name ')
 var sqlDBName = '${sqlDBNameParam}-${environmentParam}'
@@ -79,7 +79,7 @@ var deployServerEnabled = environmentParam == 'prod'
 var deploySqlDBEnabled = environmentParam == 'prod'
 
 
-resource sqlServer 'Microsoft.Sql/servers@2022-05-01-preview' = if(deployServerEnabled) {
+resource sqlServer 'Microsoft.Sql/servers@2022-05-01-preview' = {
   name: serverName
   location: location
 
@@ -148,5 +148,3 @@ resource databaseServerFirewall 'Microsoft.Sql/servers/firewallRules@2021-11-01-
     endIpAddress: sqlEndIpAddressParam
   }
 }
-
-

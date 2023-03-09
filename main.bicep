@@ -39,9 +39,9 @@ module webAppModule 'br/CoreModules:web-app:1.0' = {
   }
 }
 
-module sqlDBserverModule 'br/CoreModules:sql-database-server:latest' = {
+module sqlDBserverModule 'br/CoreModules:sql-database-server:test' = {
   scope: rg
-  name: sqlDB.name
+  name: sqlServer.name
   params: {
     environmentParam: resGroup.tags.Environment
 
