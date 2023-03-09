@@ -1,5 +1,6 @@
 param appServicePlanNameParam string
-param appServicePlanSkuParam object
+param appServicePlanSkuNameParam string
+param appServicePlanSkuTierParam string
 param appServiceKindParam string
 param environmentParam string
 @description('Provide a location for the registry.')
@@ -17,7 +18,11 @@ resource appServicePlan 'Microsoft.Web/serverfarms@2020-12-01' = {
   properties: {
     reserved: true
   }
-  sku: appServicePlanSkuParam
+ sku: {
+      name: appServicePlanSkuNameParam
+      tier: appServicePlanSkuTierParam
+
+  }
 }
 
 output aspId string = appServicePlan.id

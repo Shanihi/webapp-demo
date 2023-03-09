@@ -63,7 +63,7 @@
         "licenseType": "LicenseIncluded",
         "longTermRetentionBackupResourceId": "",
         "maintenanceConfigurationId": "",
-        "maxSizeBytes": 34359738368, 
+        "maxSizeBytes": 34359738368,
         "minCapacity": 2,
         "preferredEnclaveType": "",
         "readScale": "Disabled",
@@ -83,7 +83,10 @@
           "name": "Firewall Shan",
           "startIpAddress": "19.0.0.0",
           "endIpAddress": "21.0.0.0"
-        }
+        },
+        "dependsOn": [
+          "[resourceId('Microsoft.Sql/servers', 'server-shan')]"
+        ]
       }
     }
   }
