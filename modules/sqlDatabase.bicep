@@ -4,7 +4,6 @@ param serverNameParam string
 param administratorLoginParam string
 param serverVersionParam string
 param federatedClientIdParam string
-param keyIdParam string
 param minimalTlsVersionPeram string
 param primaryUserAssignedIdentityIdParam string
 param publicNetworkAccessParam string
@@ -89,7 +88,6 @@ resource sqlServer 'Microsoft.Sql/servers@2022-05-01-preview' = {
     version: serverVersionParam
 
     federatedClientId: federatedClientIdParam
-    keyId: keyIdParam
     minimalTlsVersion: minimalTlsVersionPeram
     primaryUserAssignedIdentityId: primaryUserAssignedIdentityIdParam
     publicNetworkAccess: publicNetworkAccessParam

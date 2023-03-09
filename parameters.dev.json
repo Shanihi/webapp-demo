@@ -17,7 +17,7 @@
         "name": "demo-app-service-plan",
         "kind": "linux",
         "sku": {
-          "name": "standard",
+          "name": "B1",
           "tier": "Basic"
         }
       }
@@ -31,12 +31,11 @@
     "sqlServer": {
       "value": {
         "name": "server-shan",
-        "administratorLogin": "admin",
-        "administratorLoginPassword": "admin",
+        "administratorLogin": "shanlogintest",
+        "administratorLoginPassword": "Testtest123456!",
         "version": "12.0",
         "federatedClientId": "",
-        "keyId": "",
-        "minimalTlsVersion": "",
+        "minimalTlsVersion": "1.2",
         "primaryUserAssignedIdentityId": "",
         "publicNetworkAccess": "",
         "restrictOutboundNetworkAccess": ""
@@ -46,7 +45,7 @@
       "value": {
         "name": "database-shan",
         "sku": {
-          "name": "standard",
+          "name": "S1",
           "tier": "Basic",
           "size": "5120",
           "capacity": 2,

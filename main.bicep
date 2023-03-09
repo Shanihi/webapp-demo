@@ -39,7 +39,7 @@ module webAppModule 'br/CoreModules:web-app:1.0' = {
   }
 }
 
-module sqlDBserverModule 'br/CoreModules:sql-database-server:test' = {
+module sqlDBserverModule 'br/CoreModules:sql-database-server:nieuwsteversie2' = {
   scope: rg
   name: sqlServer.name
   params: {
@@ -50,7 +50,6 @@ module sqlDBserverModule 'br/CoreModules:sql-database-server:test' = {
     administratorLoginPasswordParam: sqlServer.administratorLoginPassword
     serverVersionParam: sqlServer.version
     federatedClientIdParam: sqlServer.federatedClientId
-    keyIdParam: sqlServer.keyId
     minimalTlsVersionPeram: sqlServer.minimalTlsVersion
     primaryUserAssignedIdentityIdParam: sqlServer.primaryUserAssignedIdentityId
     publicNetworkAccessParam: sqlServer.publicNetworkAccess
