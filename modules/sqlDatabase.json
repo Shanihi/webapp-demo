@@ -1,0 +1,248 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "metadata": {
+    "_generator": {
+      "name": "bicep",
+      "version": "0.15.31.15270",
+      "templateHash": "17569121538571020237"
+    }
+  },
+  "parameters": {
+    "environmentParam": {
+      "type": "string"
+    },
+    "serverNameParam": {
+      "type": "string"
+    },
+    "administratorLoginParam": {
+      "type": "string"
+    },
+    "serverVersionParam": {
+      "type": "string"
+    },
+    "federatedClientIdParam": {
+      "type": "string"
+    },
+    "minimalTlsVersionPeram": {
+      "type": "string"
+    },
+    "primaryUserAssignedIdentityIdParam": {
+      "type": "string"
+    },
+    "publicNetworkAccessParam": {
+      "type": "string"
+    },
+    "restrictOutboundNetworkAccessParam": {
+      "type": "string"
+    },
+    "skuTierParam": {
+      "type": "string",
+      "allowedValues": [
+        "Basic",
+        "GeneralPurpose",
+        "MemoryOptimized"
+      ],
+      "metadata": {
+        "description": "Azure database for MySQL pricing tier"
+      }
+    },
+    "skuCapacityParam": {
+      "type": "int",
+      "metadata": {
+        "description": "Azure database for MySQL compute capacity in vCores (2,4,8,16,32)"
+      }
+    },
+    "skuFamilyParam": {
+      "type": "string",
+      "metadata": {
+        "description": "Azure database for MySQL sku family"
+      }
+    },
+    "skuSizeMBParam": {
+      "type": "string",
+      "metadata": {
+        "description": "Azure database for MySQL Sku Size "
+      }
+    },
+    "sqlDBCreateModeParam": {
+      "type": "string"
+    },
+    "location": {
+      "type": "string",
+      "defaultValue": "[resourceGroup().location]",
+      "metadata": {
+        "description": "Provide a location for the registry."
+      }
+    },
+    "sqlAutoPauseDelayParam": {
+      "type": "int"
+    },
+    "sqlCatalogCollationParam": {
+      "type": "string"
+    },
+    "sqlCollationParam": {
+      "type": "string"
+    },
+    "sqlDBNameParam": {
+      "type": "string"
+    },
+    "sqlElasticPoolIdParam": {
+      "type": "string"
+    },
+    "sqlFederatedClientIdParam": {
+      "type": "string"
+    },
+    "sqlHighAvailabilityReplicaCountParam": {
+      "type": "int"
+    },
+    "sqlIsLedgerOnParam": {
+      "type": "bool"
+    },
+    "sqlLicenseTypeParam": {
+      "type": "string"
+    },
+    "sqlLongTermRetentionBackupResourceIdParam": {
+      "type": "string"
+    },
+    "sqlMaintenanceConfigurationIdParam": {
+      "type": "string"
+    },
+    "sqlMaxSizeBytesParam": {
+      "type": "int"
+    },
+    "sqlMinCapacityParam": {
+      "type": "int"
+    },
+    "sqlPreferredEnclaveTypeParam": {
+      "type": "string"
+    },
+    "sqlReadScaleParam": {
+      "type": "string"
+    },
+    "sqlRecoverableDatabaseIdParam": {
+      "type": "string"
+    },
+    "sqlRecoveryServicesRecoveryPointIdParam": {
+      "type": "string"
+    },
+    "sqlRequestedBackupStorageRedundancyParam": {
+      "type": "string"
+    },
+    "sqlRestorableDroppedDatabaseIdParam": {
+      "type": "string"
+    },
+    "sqlRestorePointInTimeParam": {
+      "type": "string"
+    },
+    "sqlSampleNameParam": {
+      "type": "string"
+    },
+    "sqlSecondaryTypeParam": {
+      "type": "string"
+    },
+    "sqlSourceDatabaseDeletionDateParam": {
+      "type": "string"
+    },
+    "sqlSourceDatabaseIdParam": {
+      "type": "string"
+    },
+    "sqlSourceResourceIdParam": {
+      "type": "string"
+    },
+    "sqlZoneRedundantParam": {
+      "type": "bool"
+    },
+    "administratorLoginPasswordParam": {
+      "type": "securestring"
+    },
+    "sqlDBFirewallNameParam": {
+      "type": "string"
+    },
+    "sqlStartIpAddressParam": {
+      "type": "string"
+    },
+    "sqlEndIpAddressParam": {
+      "type": "string"
+    }
+  },
+  "variables": {
+    "serverName": "[format('sql-{0}-{1}', uniqueString(parameters('serverNameParam')), parameters('environmentParam'))]",
+    "sqlDBName": "[format('{0}-{1}', parameters('sqlDBNameParam'), parameters('environmentParam'))]",
+    "sqlDBFirewallName": "[format('{0}-{1}', parameters('sqlDBFirewallNameParam'), parameters('environmentParam'))]"
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Sql/servers",
+      "apiVersion": "2022-05-01-preview",
+      "name": "[variables('serverName')]",
+      "location": "[parameters('location')]",
+      "properties": {
+        "administratorLogin": "[parameters('administratorLoginParam')]",
+        "administratorLoginPassword": "[parameters('administratorLoginPasswordParam')]",
+        "version": "[parameters('serverVersionParam')]",
+        "federatedClientId": "[parameters('federatedClientIdParam')]",
+        "minimalTlsVersion": "[parameters('minimalTlsVersionPeram')]",
+        "primaryUserAssignedIdentityId": "[parameters('primaryUserAssignedIdentityIdParam')]",
+        "publicNetworkAccess": "[parameters('publicNetworkAccessParam')]",
+        "restrictOutboundNetworkAccess": "[parameters('restrictOutboundNetworkAccessParam')]"
+      }
+    },
+    {
+      "type": "Microsoft.Sql/servers/databases",
+      "apiVersion": "2022-05-01-preview",
+      "name": "[format('{0}/{1}', variables('serverName'), variables('sqlDBName'))]",
+      "location": "[parameters('location')]",
+      "sku": {
+        "name": "[parameters('sqlDBNameParam')]",
+        "tier": "[parameters('skuTierParam')]",
+        "size": "[parameters('skuSizeMBParam')]",
+        "capacity": "[parameters('skuCapacityParam')]",
+        "family": "[parameters('skuFamilyParam')]"
+      },
+      "properties": {
+        "autoPauseDelay": "[parameters('sqlAutoPauseDelayParam')]",
+        "catalogCollation": "[parameters('sqlCatalogCollationParam')]",
+        "collation": "[parameters('sqlCollationParam')]",
+        "createMode": "[parameters('sqlDBCreateModeParam')]",
+        "elasticPoolId": "[parameters('sqlElasticPoolIdParam')]",
+        "federatedClientId": "[parameters('sqlFederatedClientIdParam')]",
+        "highAvailabilityReplicaCount": "[parameters('sqlHighAvailabilityReplicaCountParam')]",
+        "isLedgerOn": "[parameters('sqlIsLedgerOnParam')]",
+        "licenseType": "[parameters('sqlLicenseTypeParam')]",
+        "longTermRetentionBackupResourceId": "[parameters('sqlLongTermRetentionBackupResourceIdParam')]",
+        "maintenanceConfigurationId": "[parameters('sqlMaintenanceConfigurationIdParam')]",
+        "maxSizeBytes": "[parameters('sqlMaxSizeBytesParam')]",
+        "minCapacity": "[parameters('sqlMinCapacityParam')]",
+        "preferredEnclaveType": "[parameters('sqlPreferredEnclaveTypeParam')]",
+        "readScale": "[parameters('sqlReadScaleParam')]",
+        "recoverableDatabaseId": "[parameters('sqlRecoverableDatabaseIdParam')]",
+        "recoveryServicesRecoveryPointId": "[parameters('sqlRecoveryServicesRecoveryPointIdParam')]",
+        "requestedBackupStorageRedundancy": "[parameters('sqlRequestedBackupStorageRedundancyParam')]",
+        "restorableDroppedDatabaseId": "[parameters('sqlRestorableDroppedDatabaseIdParam')]",
+        "restorePointInTime": "[parameters('sqlRestorePointInTimeParam')]",
+        "sampleName": "[parameters('sqlSampleNameParam')]",
+        "secondaryType": "[parameters('sqlSecondaryTypeParam')]",
+        "sourceDatabaseDeletionDate": "[parameters('sqlSourceDatabaseDeletionDateParam')]",
+        "sourceDatabaseId": "[parameters('sqlSourceDatabaseIdParam')]",
+        "sourceResourceId": "[parameters('sqlSourceResourceIdParam')]",
+        "zoneRedundant": "[parameters('sqlZoneRedundantParam')]"
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.Sql/servers', variables('serverName'))]"
+      ]
+    },
+    {
+      "type": "Microsoft.Sql/servers/firewallRules",
+      "apiVersion": "2021-11-01-preview",
+      "name": "[format('{0}/{1}', variables('serverName'), variables('sqlDBFirewallName'))]",
+      "properties": {
+        "startIpAddress": "[parameters('sqlStartIpAddressParam')]",
+        "endIpAddress": "[parameters('sqlEndIpAddressParam')]"
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.Sql/servers', variables('serverName'))]"
+      ]
+    }
+  ]
+}

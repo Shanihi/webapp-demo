@@ -16,7 +16,7 @@ resource rg 'Microsoft.Resources/resourceGroups@2021-04-01' = {
 }
 
 
-module appServicePlanModule 'br/CoreModules:app-serviceplan:1.0' = {
+module appServicePlanModule 'br/CoreModules:app-serviceplan:testaschwin' = {
   scope: rg
   name: appServicePlan.name
   params: {
@@ -28,7 +28,7 @@ module appServicePlanModule 'br/CoreModules:app-serviceplan:1.0' = {
   }
 }
 
-module webAppModule 'br/CoreModules:web-app:1.0' = {
+module webAppModule 'br/CoreModules:web-app:testaschwin1' = {
   scope: rg
   name: webApp.name
   params: {
@@ -39,7 +39,7 @@ module webAppModule 'br/CoreModules:web-app:1.0' = {
   }
 }
 
-module sqlDBserverModule 'br/CoreModules:sql-database-server:nieuwsteversie2' = {
+module sqlDBserverModule 'br/CoreModules:sql-database-server:nogeentestvantestaschwin1' = {
   scope: rg
   name: sqlServer.name
   params: {
@@ -55,7 +55,7 @@ module sqlDBserverModule 'br/CoreModules:sql-database-server:nieuwsteversie2' = 
     publicNetworkAccessParam: sqlServer.publicNetworkAccess
     restrictOutboundNetworkAccessParam: sqlServer.restrictOutboundNetworkAccess
 
-    sqlDBNameParam: sqlDB.name
+    sqlDBNameParam: sqlDB.sku.name
     skuTierParam: sqlDB.sku.tier
     skuSizeMBParam: sqlDB.sku.size
     skuCapacityParam: sqlDB.sku.capacity
@@ -80,7 +80,7 @@ module sqlDBserverModule 'br/CoreModules:sql-database-server:nieuwsteversie2' = 
     sqlRequestedBackupStorageRedundancyParam: sqlDB.requestedBackupStorageRedundancy
     sqlRestorableDroppedDatabaseIdParam: sqlDB.restorableDroppedDatabaseId
     sqlRestorePointInTimeParam: sqlDB.restorePointInTime
-    sqlSampleNameParam: sqlDB.sampleName
+    sqlSampleNameParam: sqlDB.sampleName 
     sqlSecondaryTypeParam: sqlDB.secondaryType
     sqlSourceDatabaseDeletionDateParam: sqlDB.sourceDatabaseDeletionDate
     sqlSourceDatabaseIdParam: sqlDB.sourceDatabaseId

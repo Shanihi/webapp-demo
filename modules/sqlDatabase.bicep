@@ -74,41 +74,23 @@ var sqlDBName = '${sqlDBNameParam}-${environmentParam}'
 @description('Provide name for sql DB, suffixing server name with sql DB name ')
 var sqlDBFirewallName = '${sqlDBFirewallNameParam}-${environmentParam}'
 
-var deployServerEnabled = environmentParam == 'prod'
-var deploySqlDBEnabled = environmentParam == 'prod'
-
-
-resource sqlServer 'Microsoft.Sql/servers@2022-05-01-preview' = {
-  name: serverName
-  location: location
-
-  properties: {
-    administratorLogin: administratorLoginParam
-    administratorLoginPassword: administratorLoginPasswordParam
-    version: serverVersionParam
-
-    federatedClientId: federatedClientIdParam
-    minimalTlsVersion: minimalTlsVersionPeram
-    primaryUserAssignedIdentityId: primaryUserAssignedIdentityIdParam
-    publicNetworkAccess: publicNetworkAccessParam
-    restrictOutboundNetworkAccess: restrictOutboundNetworkAccessParam
+var basicSqlProperties =  {
+    autoPauseDelay: sqlAutoPauseDelayParam
+    catalogCollation: sqlCatalogCollationParam
+    collation: sqlCollationParam
+    createMode: sqlDBCreateModeParam
+    highAvailabilityReplicaCount: sqlHighAvailabilityReplicaCountParam
+    isLedgerOn: sqlIsLedgerOnParam
+    licenseType: sqlLicenseTypeParam
+    maxSizeBytes: sqlMaxSizeBytesParam
+    minCapacity: sqlMinCapacityParam
+    readScale: sqlReadScaleParam
+    requestedBackupStorageRedundancy: sqlRequestedBackupStorageRedundancyParam
+    sampleName: sqlSampleNameParam
+    zoneRedundant: sqlZoneRedundantParam
   }
-    
-}
 
-resource sqlDatabase 'Microsoft.Sql/servers/databases@2022-05-01-preview' = if(deploySqlDBEnabled) {
-  parent: sqlServer
-  name: sqlDBName
-  location: location
-
-  sku: {
-      name: sqlDBNameParam
-      tier: skuTierParam
-      size: skuSizeMBParam
-      capacity: skuCapacityParam
-      family: skuFamilyParam
-  }
-  properties: {
+  var generalSqlProperties =  {
     autoPauseDelay: sqlAutoPauseDelayParam
     catalogCollation: sqlCatalogCollationParam
     collation: sqlCollationParam
@@ -136,6 +118,67 @@ resource sqlDatabase 'Microsoft.Sql/servers/databases@2022-05-01-preview' = if(d
     sourceResourceId: sqlSourceResourceIdParam
     zoneRedundant: sqlZoneRedundantParam
   }
+
+   var memorySqlProperties =  {
+    autoPauseDelay: sqlAutoPauseDelayParam
+    catalogCollation: sqlCatalogCollationParam
+    collation: sqlCollationParam
+    createMode: sqlDBCreateModeParam
+    elasticPoolId: sqlElasticPoolIdParam
+    federatedClientId: sqlFederatedClientIdParam
+    highAvailabilityReplicaCount: sqlHighAvailabilityReplicaCountParam
+    isLedgerOn: sqlIsLedgerOnParam
+    licenseType: sqlLicenseTypeParam
+    longTermRetentionBackupResourceId: sqlLongTermRetentionBackupResourceIdParam
+    maintenanceConfigurationId: sqlMaintenanceConfigurationIdParam
+    maxSizeBytes: sqlMaxSizeBytesParam
+    minCapacity: sqlMinCapacityParam
+    preferredEnclaveType: sqlPreferredEnclaveTypeParam
+    readScale: sqlReadScaleParam
+    recoverableDatabaseId: sqlRecoverableDatabaseIdParam
+    recoveryServicesRecoveryPointId: sqlRecoveryServicesRecoveryPointIdParam
+    requestedBackupStorageRedundancy: sqlRequestedBackupStorageRedundancyParam
+    restorableDroppedDatabaseId: sqlRestorableDroppedDatabaseIdParam
+    restorePointInTime: sqlRestorePointInTimeParam
+    sampleName: sqlSampleNameParam
+    secondaryType: sqlSecondaryTypeParam
+    sourceDatabaseDeletionDate: sqlSourceDatabaseDeletionDateParam
+    sourceDatabaseId: sqlSourceDatabaseIdParam
+    sourceResourceId: sqlSourceResourceIdParam
+    zoneRedundant: sqlZoneRedundantParam
+  }
+
+resource sqlServer 'Microsoft.Sql/servers@2022-05-01-preview' = {
+  name: serverName
+  location: location
+
+  properties: {
+    administratorLogin: administratorLoginParam
+    administratorLoginPassword: administratorLoginPasswordParam
+    version: serverVersionParam
+
+    federatedClientId: federatedClientIdParam
+    minimalTlsVersion: minimalTlsVersionPeram
+    primaryUserAssignedIdentityId: primaryUserAssignedIdentityIdParam
+    publicNetworkAccess: publicNetworkAccessParam
+    restrictOutboundNetworkAccess: restrictOutboundNetworkAccessParam
+  }
+    
+}
+
+resource sqlDatabase 'Microsoft.Sql/servers/databases@2022-05-01-preview' = {
+  parent: sqlServer
+  name: sqlDBName
+  location: location
+
+  sku: {
+      name: sqlDBNameParam
+      tier: skuTierParam
+      size: skuSizeMBParam
+      capacity: skuCapacityParam
+      family: skuFamilyParam
+  }
+  properties: (skuTierParam == 'Basic') ? basicSqlProperties : (skuTierParam == 'GeneralPurpose') ? generalSqlProperties : memorySqlProperties
 }
 
 resource databaseServerFirewall 'Microsoft.Sql/servers/firewallRules@2021-11-01-preview' = {

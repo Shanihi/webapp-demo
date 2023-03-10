@@ -45,10 +45,10 @@
       "value": {
         "name": "database-shan",
         "sku": {
-          "name": "S1",
+          "name": "Basic",
           "tier": "Basic",
           "size": "5120",
-          "capacity": 2,
+          "capacity": 0,
           "family": "Gen5"
         },
         "autoPauseDelay": -1,
@@ -62,7 +62,7 @@
         "licenseType": "LicenseIncluded",
         "longTermRetentionBackupResourceId": "",
         "maintenanceConfigurationId": "",
-        "maxSizeBytes": 34359738368,
+        "maxSizeBytes": 2147483648,
         "minCapacity": 2,
         "preferredEnclaveType": "",
         "readScale": "Disabled",
@@ -71,7 +71,7 @@
         "requestedBackupStorageRedundancy": "Zone",
         "restorableDroppedDatabaseId": "",
         "restorePointInTime": "",
-        "sampleName": "sampleSchemaName",
+        "sampleName": "AdventureWorksLT",
         "secondaryType": "",
         "sourceDatabaseDeletionDate": "",
         "sourceDatabaseId": "",
