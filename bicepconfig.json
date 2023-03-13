@@ -1,0 +1,12 @@
+{
+	"moduleAliases": {
+		"br": {
+			"bicepreg": {
+				"registry": "shanbicepcontainerregistry.azurecr.io"
+			},
+			"CoreModules": {
+				"registry": "shanbicepcontainerregistry.azurecr.io"
+			}
+		}
+	}
+}

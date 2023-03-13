@@ -16,7 +16,7 @@ resource rg 'Microsoft.Resources/resourceGroups@2021-04-01' = {
 }
 
 
-module appServicePlanModule 'modules/appServicePlan.bicep' = {
+module appServicePlanModule 'br/CoreModules:appserviceplan:1.0_20230313114452' = {
   scope: rg
   name: appServicePlan.name
   params: {
@@ -25,11 +25,10 @@ module appServicePlanModule 'modules/appServicePlan.bicep' = {
     appServicePlanSkuTierParam: appServicePlan.sku.tier
     environmentParam: resGroup.tags.Environment
     appServiceKindParam: appServicePlan.kind
-    location:deploymentLocation
   }
 }
 
-module webAppModule 'modules/webApp.bicep' = {
+module webAppModule 'br/CoreModules:webapp:1.0_20230313114452' = {
   scope: rg
   name: webApp.name
   params: {
@@ -37,11 +36,10 @@ module webAppModule 'modules/webApp.bicep' = {
     environmentParam: resGroup.tags.Environment
     linuxFxVersionParam: webApp.linuxFxVersion
     webAppNameParam: webApp.name
-    location:deploymentLocation
   }
 }
 
-module sqlDBserverModule 'modules/sqlDatabase.bicep' = {
+module sqlDBserverModule 'br/CoreModules:sqldatabase:1.0_20230313114452' = {
   scope: rg
   name: sqlServer.name
   params: {
@@ -91,6 +89,5 @@ module sqlDBserverModule 'modules/sqlDatabase.bicep' = {
     sqlDBFirewallNameParam: sqlDB.firewall.name
     sqlStartIpAddressParam: sqlDB.firewall.startIpAddress
     sqlEndIpAddressParam: sqlDB.firewall.endIpAddress
-    location:deploymentLocation
   }
 }
