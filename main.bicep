@@ -16,7 +16,7 @@ resource rg 'Microsoft.Resources/resourceGroups@2021-04-01' = {
 }
 
 
-module appServicePlanModule 'br/CoreModules:app-serviceplan:testaschwin' = {
+module appServicePlanModule 'modules/appServicePlan.bicep' = {
   scope: rg
   name: appServicePlan.name
   params: {
@@ -25,10 +25,11 @@ module appServicePlanModule 'br/CoreModules:app-serviceplan:testaschwin' = {
     appServicePlanSkuTierParam: appServicePlan.sku.tier
     environmentParam: resGroup.tags.Environment
     appServiceKindParam: appServicePlan.kind
+    location:deploymentLocation
   }
 }
 
-module webAppModule 'br/CoreModules:web-app:testaschwin1' = {
+module webAppModule 'modules/webApp.bicep' = {
   scope: rg
   name: webApp.name
   params: {
@@ -36,10 +37,11 @@ module webAppModule 'br/CoreModules:web-app:testaschwin1' = {
     environmentParam: resGroup.tags.Environment
     linuxFxVersionParam: webApp.linuxFxVersion
     webAppNameParam: webApp.name
+    location:deploymentLocation
   }
 }
 
-module sqlDBserverModule 'br/CoreModules:sql-database-server:nogeentestvantestaschwin1' = {
+module sqlDBserverModule 'modules/sqlDatabase.bicep' = {
   scope: rg
   name: sqlServer.name
   params: {
@@ -89,5 +91,6 @@ module sqlDBserverModule 'br/CoreModules:sql-database-server:nogeentestvantestas
     sqlDBFirewallNameParam: sqlDB.firewall.name
     sqlStartIpAddressParam: sqlDB.firewall.startIpAddress
     sqlEndIpAddressParam: sqlDB.firewall.endIpAddress
+    location:deploymentLocation
   }
 }
