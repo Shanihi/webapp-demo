@@ -1,5 +1,5 @@
 on: [push]
-name: Azure Bicep deploy testing
+name: Azure Bicep deploy testing new
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
