@@ -22,4 +22,4 @@ jobs:
         template: ./main.bicep
         parameters: ''
         failOnStdErr: false
-        location: westeurope
+ 
