@@ -33,7 +33,7 @@ jobs:
           creds: ${{ secrets.AZURE_SPN_CREDENTIAL }}
 
       - name: az bicep deploy
-        working-directory: '{github.workspace}'
+        working-directory: '${{github.workspace}}'
         run: |
             az deployment sub create --what-if --template-file ./main.bicep --parameters './parameters.dev.json' --location westeurope --output jsonc
    
@@ -56,7 +56,7 @@ jobs:
           creds: ${{ secrets.AZURE_SPN_CREDENTIAL }}
 
       - name: az bicep resources deploy
-        working-directory: '{github.workspace}'
+        working-directory: '${{github.workspace}}'
         run: |
             az deployment sub create --template-file ./main.bicep --parameters './parameters.dev.json' --location westeurope --output jsonc 
 
