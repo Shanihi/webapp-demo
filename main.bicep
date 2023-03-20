@@ -16,7 +16,7 @@ resource rg 'Microsoft.Resources/resourceGroups@2021-04-01' = {
 }
 
 
-module appServicePlanModule 'br/CoreModules:appserviceplan:1.0_20230313114452' = {
+module appServicePlanModule 'br/CoreModules:appserviceplan:1.0_20230320093853' = {
   scope: rg
   name: appServicePlan.name
   params: {
@@ -28,7 +28,7 @@ module appServicePlanModule 'br/CoreModules:appserviceplan:1.0_20230313114452' =
   }
 }
 
-module webAppModule 'br/CoreModules:webapp:1.0_20230313114452' = {
+module webAppModule 'br/CoreModules:webapp:1.0_20230320093853' = {
   scope: rg
   name: webApp.name
   params: {
@@ -39,7 +39,7 @@ module webAppModule 'br/CoreModules:webapp:1.0_20230313114452' = {
   }
 }
 
-module sqlDBserverModule 'br/CoreModules:sqldatabase:1.0_20230313114452' = {
+module sqlDBserverModule 'br/CoreModules:sqldatabase:1.0_20230320093853' = {
   scope: rg
   name: sqlServer.name
   params: {
