@@ -28,6 +28,6 @@ jobs:
       with: 
         resourceGroupName: ${{ secrets.AZURE_RG }}
         template: ./main.bicep
-        parameters: ./parameters.dev.json' 
+        parameters: ./parameters.dev.json
         scope: 'resourcegroup'
         region: ${{ env.INPUT_REGION }}
