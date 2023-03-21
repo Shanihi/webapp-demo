@@ -5,6 +5,9 @@ permissions:
   id-token: write
   contents: read
   
+env:
+    ENVIRONMENT: dev
+    
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -17,14 +20,11 @@ jobs:
     - uses: azure/login@v1
       with: # Set Azure credentials secret as an input
        creds: ${{ secrets.AZURE_CREDENTIALS }}
+      env: # Or as an environment variable
+       creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-      # Deploy ARM template
-    - name: Deploy to Azure
     - uses: azure/arm-deploy@v1
       with: 
-        subscriptionId: ${{ secrets.AZURE_CREDENTIALS }}
         resourceGroupName: ${{ secrets.AZURE_RG }}
         template: ./main.bicep
-        parameters: storageAccountType=Standard_LRS
-        
- 
+        parameters: environmentType=${{ env.ENVIRONMENT }}
