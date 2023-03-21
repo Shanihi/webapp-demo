@@ -8,7 +8,7 @@ permissions:
 env:
     ENVIRONMENT: dev
     INPUT_REGION: westeurope
-    AZURE_RG: demo-app-service-rg
+    AZURE_RG: myTestRG 
     
 jobs:
   deploy:
