@@ -1,5 +1,5 @@
 on: [push]
-name: Azure Bicep deploy testing new
+name: Azure Bicep deploy test
 
 permissions:
   id-token: write
