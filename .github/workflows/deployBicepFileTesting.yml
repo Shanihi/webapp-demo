@@ -23,6 +23,7 @@ jobs:
     - uses: azure/arm-deploy@v1
       with: 
         creds: ${{ secrets.AZURE_CREDENTIALS }}
+        resourceGroupName: demo-app-service-rg
         template: ./main.bicep
         parameters: environmentType=${{ env.ENVIRONMENT }}
         
