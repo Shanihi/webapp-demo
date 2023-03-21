@@ -4,6 +4,10 @@ name: Azure Bicep deploy testing new
 permissions:
   id-token: write
   contents: read
+  
+env:
+    AZURE_RESOURCEGROUP_NAME: demo-app-service-rg
+    ENVIRONMENT: dev
     
 jobs:
   deploy:
@@ -22,8 +26,7 @@ jobs:
 
     - uses: azure/arm-deploy@v1
       with: 
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
-        resourceGroupName: demo-app-service-rg
+        resourceGroupName: ${{ env.AZURE_RESOURCEGROUP_NAME }}
         template: ./main.bicep
         parameters: environmentType=${{ env.ENVIRONMENT }}
         
