@@ -5,11 +5,12 @@ param webApp object
 param resGroup object
 param sqlServer object
 param sqlDB object
+  param location string = 'westeurope'
 
 
 resource rg 'Microsoft.Resources/resourceGroups@2021-04-01' = {
   name: resGroup.name
-  location: 'westeurope'
+  location: location
   tags: resGroup.tags
 }
 
