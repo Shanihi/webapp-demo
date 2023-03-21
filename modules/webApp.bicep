@@ -1,5 +1,5 @@
 param appServicePlanIdParam string
-param environmentParam string
+
 param linuxFxVersionParam string
 param webAppNameParam string
 
@@ -7,7 +7,7 @@ param webAppNameParam string
 param location string = resourceGroup().location
 
 @description('Provide name for your Web Application, suffixing the environmentParam defined in the main.bicep template.')
-var webAppName = '${webAppNameParam}-${environmentParam}'
+var webAppName = webAppNameParam
 
 
 
