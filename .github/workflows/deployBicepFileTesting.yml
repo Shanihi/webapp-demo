@@ -8,7 +8,7 @@ permissions:
 env:
     ENVIRONMENT: dev
     INPUT_REGION: westeurope
-    AZURE_RG: deployment-test-resourcegroup
+    AZURE_RG: myTestRG
     
 jobs:
   deploy:
