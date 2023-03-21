@@ -29,5 +29,5 @@ jobs:
         resourceGroupName: ${{ secrets.AZURE_RG }}
         template: ./main.bicep
         parameters: ./parameters.dev.json' 
-        scope: 'resourcegroup'
+        scope: 'subscription'
         region: ${{ env.INPUT_REGION }}
