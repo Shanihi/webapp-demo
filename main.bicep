@@ -1,4 +1,3 @@
-
 param appServicePlan object
 param webApp object
 param resGroup object
