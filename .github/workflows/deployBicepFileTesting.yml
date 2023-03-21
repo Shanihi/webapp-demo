@@ -28,6 +28,6 @@ jobs:
       with: 
         resourceGroupName: ${{ secrets.AZURE_RG }}
         template: ./main.bicep
-        parameters: environmentType=${{ env.ENVIRONMENT }}
+        parameters: storageAccountType=Standard_LRS
         scope: 'subscription'
         region: ${{ env.INPUT_REGION }}
