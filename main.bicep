@@ -1,17 +1,16 @@
-targetScope = 'subscription'
+targetScope = 'resourceGroup'
 
 param appServicePlan object
 param webApp object
 param resGroup object
 param sqlServer object
 param sqlDB object
+  param location string = 'westeurope'
 
-@description('Provide a location for the registry.')
-param deploymentLocation string = deployment().location
 
 resource rg 'Microsoft.Resources/resourceGroups@2021-04-01' = {
   name: resGroup.name
-  location: deploymentLocation
+  location: location
   tags: resGroup.tags
 }
 
