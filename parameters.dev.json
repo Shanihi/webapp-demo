@@ -2,14 +2,9 @@
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
-    "resGroup": {
+    "otherResourceGroup": {
       "value": {
-        "name": "demo-app-service-rg",
-        "tags": {
-          "ApplicationName": "Demo WebApp Shan",
-          "Description": "Demo WebApp created by Shan",
-          "Environment": "dev"
-        }
+        "name": "een-andere-resource-group"
       }
     },
     "appServicePlan": {
