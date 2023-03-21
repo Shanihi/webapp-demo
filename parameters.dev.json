@@ -14,7 +14,7 @@
     },
     "appServicePlan": {
       "value": {
-        "name": "demo-app-service-plan",
+        "name": "demo-app-service-plan-test",
         "kind": "linux",
         "sku": {
           "name": "B1",
@@ -24,13 +24,13 @@
     },
     "webApp": {
       "value": {
-        "name": "bicep-demo-webapp-shan",
+        "name": "bicep-demo-webapp-shan-test",
         "linuxFxVersion": "DOCKER|mcr.microsoft.com/appsvc/staticsite:latest"
       }
     },
     "sqlServer": {
       "value": {
-        "name": "server-shan",
+        "name": "server-shan-test",
         "administratorLogin": "shanlogintest",
         "administratorLoginPassword": "Testtest123456!",
         "version": "12.0",

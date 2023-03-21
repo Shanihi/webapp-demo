@@ -5,18 +5,9 @@ param webApp object
 param resGroup object
 param sqlServer object
 param sqlDB object
-  param location string = 'westeurope'
-
-
-resource rg 'Microsoft.Resources/resourceGroups@2021-04-01' = {
-  name: resGroup.name
-  location: location
-  tags: resGroup.tags
-}
 
 
 module appServicePlanModule 'br/CoreModules:appserviceplan:1.0_20230320093853' = {
-  scope: rg
   name: appServicePlan.name
   params: {
     appServicePlanNameParam: appServicePlan.name
@@ -28,7 +19,6 @@ module appServicePlanModule 'br/CoreModules:appserviceplan:1.0_20230320093853' =
 }
 
 module webAppModule 'br/CoreModules:webapp:1.0_20230320093853' = {
-  scope: rg
   name: webApp.name
   params: {
     appServicePlanIdParam: appServicePlanModule.outputs.aspId
@@ -39,7 +29,6 @@ module webAppModule 'br/CoreModules:webapp:1.0_20230320093853' = {
 }
 
 module sqlDBserverModule 'br/CoreModules:sqldatabase:1.0_20230320093853' = {
-  scope: rg
   name: sqlServer.name
   params: {
     environmentParam: resGroup.tags.Environment

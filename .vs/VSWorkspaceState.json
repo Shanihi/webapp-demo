@@ -3,7 +3,9 @@
     "",
     "\\.github",
     "\\.github\\workflows",
+    "\\modules",
     "\\registries"
   ],
+  "SelectedNode": "\\.github\\workflows",
   "PreviewInSolutionExplorer": false
 }
