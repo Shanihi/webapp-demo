@@ -28,6 +28,6 @@ jobs:
       with: 
         resourceGroupName: ${{ secrets.AZURE_RG }}
         template: ./main.bicep
-        parameters: webApp.name=TestNameWebApp
+        parameters: webApp
         scope: 'subscription'
         region: ${{ env.INPUT_REGION }}
