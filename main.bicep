@@ -6,12 +6,10 @@ param resGroup object
 param sqlServer object
 param sqlDB object
 
-@description('Provide a location for the registry.')
-param deploymentLocation string = deployment().location
 
 resource rg 'Microsoft.Resources/resourceGroups@2021-04-01' = {
   name: resGroup.name
-  location: deploymentLocation
+  location: 'westeurope'
   tags: resGroup.tags
 }
 
