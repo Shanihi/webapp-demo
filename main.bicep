@@ -1,14 +1,14 @@
-targetScope = 'resourceGroup'
 
 param appServicePlan object
 param webApp object
 param resGroup object
 param sqlServer object
 param sqlDB object
-
+param otherResourceGroup string
 
 module appServicePlanModule 'br/CoreModules:appserviceplan:1.0_20230320093853' = {
   name: appServicePlan.name
+  scope: resourceGroup(otherResourceGroup)
   params: {
     appServicePlanNameParam: appServicePlan.name
     appServicePlanSkuNameParam: appServicePlan.sku.name
@@ -20,6 +20,7 @@ module appServicePlanModule 'br/CoreModules:appserviceplan:1.0_20230320093853' =
 
 module webAppModule 'br/CoreModules:webapp:1.0_20230320093853' = {
   name: webApp.name
+  scope: resourceGroup(otherResourceGroup)
   params: {
     appServicePlanIdParam: appServicePlanModule.outputs.aspId
     environmentParam: resGroup.tags.Environment
@@ -30,6 +31,7 @@ module webAppModule 'br/CoreModules:webapp:1.0_20230320093853' = {
 
 module sqlDBserverModule 'br/CoreModules:sqldatabase:1.0_20230320093853' = {
   name: sqlServer.name
+  scope: resourceGroup(otherResourceGroup)
   params: {
     environmentParam: resGroup.tags.Environment
 
