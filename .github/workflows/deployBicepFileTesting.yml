@@ -21,7 +21,7 @@ jobs:
        credentials: ${{ secrets.AZURE_CREDENTIALS }}
 
     - uses: azure/arm-deploy@v1
-      with: # Set Azure credentials secret as an input
+      with: 
         credentials: ${{ secrets.AZURE_CREDENTIALS }}
         template: ./main.bicep
         parameters: environmentType=${{ env.ENVIRONMENT }}
