@@ -1,7 +1,10 @@
 on: [push]
 name: Azure Bicep deploy testing new
+
+env: 
+    AZURE_RESOURCEGROUP_NAME: demo-app-service-rg
 jobs:
-  build-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
     steps:
 
@@ -13,12 +16,9 @@ jobs:
       with:
         creds: ${{ secrets.AZURE_SPN_CREDENTIAL }}
 
-      # Deploy Bicep file
-    - name: deploy
-      uses: azure/arm-deploy@v1
+    - uses: azure/arm-deploy@v1
       with:
-        resourceGroupName: ${{ secrets.AZURE_RG }}
+        resourceGroupName: ${{ env.AZURE_RESOURCEGROUP_NAME }}
         template: ./main.bicep
         parameters: main.bicep storageAccountType=Standard_LRS 
-        additionalArguments: "--what-if --rollback-on-error --what-if-exclude-change-types Create Ignore"
  
