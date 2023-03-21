@@ -1,6 +1,10 @@
 on: [push]
 name: Azure Bicep deploy testing new
 
+permissions:
+  id-token: write
+  contents: read
+  
 env: 
     AZURE_RESOURCEGROUP_NAME: demo-app-service-rg
     ENVIRONMENT: dev
