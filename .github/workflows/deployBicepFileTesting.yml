@@ -17,8 +17,6 @@ jobs:
     - uses: azure/login@v1
       with: # Set Azure credentials secret as an input
        creds: ${{ secrets.AZURE_CREDENTIALS }}
-      env: # Or as an environment variable
-       creds: ${{ secrets.AZURE_CREDENTIALS }}
 
       # Deploy ARM template
     - name: Deploy to Azure
