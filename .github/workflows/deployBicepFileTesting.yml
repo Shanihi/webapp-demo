@@ -8,6 +8,7 @@ permissions:
 env:
     ENVIRONMENT: dev
     INPUT_REGION: westeurope
+    AZURE_RG: deployment-test-resourcegroup
     
 jobs:
   deploy:
@@ -26,7 +27,7 @@ jobs:
 
     - uses: azure/arm-deploy@v1
       with: 
-        resourceGroupName: ${{ secrets.AZURE_RG }}
+        resourceGroupName: ${{ env.AZURE_RG }}
         template: ./main.bicep
         parameters: ./parameters.dev.json
         scope: 'resourcegroup'
