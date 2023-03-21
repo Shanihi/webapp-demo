@@ -1,15 +1,17 @@
-targetScope = 'subscription'
+targetScope = 'resourceGroup'
 
 param appServicePlan object
 param webApp object
 param resGroup object
 param sqlServer object
 param sqlDB object
+output subscriptionOutput object = subscription()
 
 @description('Provide a location for the registry.')
 param deploymentLocation string = deployment().location
 
 resource rg 'Microsoft.Resources/resourceGroups@2021-04-01' = {
+  scope: subscription()
   name: resGroup.name
   location: deploymentLocation
   tags: resGroup.tags
