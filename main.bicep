@@ -1,4 +1,4 @@
-targetScope = 'resourcegroup'
+targetScope = 'resourceGroup'
 
 param appServicePlan object
 param webApp object
