@@ -1,6 +1,5 @@
 param appServicePlan object
 param webApp object
-param resGroup object
 param sqlServer object
 param sqlDB object
 param otherResourceGroup string
@@ -12,7 +11,7 @@ module appServicePlanModule 'br/CoreModules:appserviceplan:1.0_20230320093853' =
     appServicePlanNameParam: appServicePlan.name
     appServicePlanSkuNameParam: appServicePlan.sku.name
     appServicePlanSkuTierParam: appServicePlan.sku.tier
-    environmentParam: resGroup.tags.Environment
+    environmentParam: otherResourceGroup.tags.Environment
     appServiceKindParam: appServicePlan.kind
   }
 }
@@ -22,7 +21,7 @@ module webAppModule 'br/CoreModules:webapp:1.0_20230320093853' = {
   scope: resourceGroup(otherResourceGroup)
   params: {
     appServicePlanIdParam: appServicePlanModule.outputs.aspId
-    environmentParam: resGroup.tags.Environment
+    environmentParam: otherResourceGroup.tags.Environment
     linuxFxVersionParam: webApp.linuxFxVersion
     webAppNameParam: webApp.name
   }
@@ -32,7 +31,7 @@ module sqlDBserverModule 'br/CoreModules:sqldatabase:1.0_20230320093853' = {
   name: sqlServer.name
   scope: resourceGroup(otherResourceGroup)
   params: {
-    environmentParam: resGroup.tags.Environment
+    environmentParam: otherResourceGroup.tags.Environment
 
     serverNameParam: sqlServer.name
     administratorLoginParam: sqlServer.administratorLogin

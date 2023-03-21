@@ -4,9 +4,13 @@
   "parameters": {
     "otherResourceGroup": {
       "value": {
-        "name": "een-andere-resource-group"
+        "name": "een-andere-resource-group",
+        "tags": {
+          "name": "dev"
+        }
       }
     },
+
     "appServicePlan": {
       "value": {
         "name": "demo-app-service-plan-test",
