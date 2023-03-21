@@ -2,35 +2,30 @@ param appServicePlan object
 param webApp object
 param sqlServer object
 param sqlDB object
-param environmentParam string = 'dev'
 
 
-module appServicePlanModule 'br/CoreModules:appserviceplan:1.0_20230320093853' = {
+module appServicePlanModule 'br/CoreModules:appserviceplan:1.0_20230321202710' = {
   name: appServicePlan.name
   params: {
     appServicePlanNameParam: appServicePlan.name
     appServicePlanSkuNameParam: appServicePlan.sku.name
     appServicePlanSkuTierParam: appServicePlan.sku.tier
-    environmentParam: environmentParam
     appServiceKindParam: appServicePlan.kind
   }
 }
 
-module webAppModule 'br/CoreModules:webapp:1.0_20230320093853' = {
+module webAppModule 'br/CoreModules:webapp:1.0_20230321202710' = {
   name: webApp.name
   params: {
     appServicePlanIdParam: appServicePlanModule.outputs.aspId
-    environmentParam: environmentParam
     linuxFxVersionParam: webApp.linuxFxVersion
     webAppNameParam: webApp.name
   }
 }
 
-module sqlDBserverModule 'br/CoreModules:sqldatabase:1.0_20230320093853' = {
+module sqlDBserverModule 'br/CoreModules:sqldatabase:1.0_20230321202710' = {
   name: sqlServer.name
   params: {
-    environmentParam: environmentParam
-
     serverNameParam: sqlServer.name
     administratorLoginParam: sqlServer.administratorLogin
     administratorLoginPasswordParam: sqlServer.administratorLoginPassword
