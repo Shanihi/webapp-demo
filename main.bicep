@@ -2,7 +2,7 @@ param appServicePlan object
 param webApp object
 param sqlServer object
 param sqlDB object
-param environmentParam string
+param environmentParam string = 'dev'
 
 
 module appServicePlanModule 'br/CoreModules:appserviceplan:1.0_20230320093853' = {
