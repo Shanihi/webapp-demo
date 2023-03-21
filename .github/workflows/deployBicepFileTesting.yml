@@ -28,3 +28,4 @@ jobs:
         resourceGroupName: ${{ secrets.AZURE_RG }}
         template: ./main.bicep
         parameters: environmentType=${{ env.ENVIRONMENT }}
+        scope: 'subscription'
