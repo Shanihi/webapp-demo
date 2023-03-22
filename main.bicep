@@ -20,7 +20,7 @@ module appServicePlanModule 'br/CoreModules:appserviceplan:1.0_20230321202710' =
   }
 }
 
-module webAppModule 'br/CoreModules:webapp:1.0_20230321202710' = if (newOrExisting == 'existing') {
+module webAppModule 'br/CoreModules:webapp:1.0_20230321202710' = if (newOrExisting == 'new') {
   name: webApp.name
   params: {
     appServicePlanIdParam: appServicePlanModule.outputs.aspId

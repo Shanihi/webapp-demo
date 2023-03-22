@@ -6,6 +6,6 @@
     "\\modules",
     "\\registries"
   ],
-  "SelectedNode": "\\.github\\workflows\\deployBicepFileTesting.yml",
+  "SelectedNode": "\\publish.sh",
   "PreviewInSolutionExplorer": false
 }
