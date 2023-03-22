@@ -1,11 +1,7 @@
 {
   "ExpandedNodes": [
-    "",
-    "\\.github",
-    "\\.github\\workflows",
-    "\\modules",
-    "\\registries"
+    ""
   ],
-  "SelectedNode": "\\.github\\workflows",
+  "SelectedNode": "\\deploy.sh",
   "PreviewInSolutionExplorer": false
 }

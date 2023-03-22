@@ -3,8 +3,14 @@ param webApp object
 param sqlServer object
 param sqlDB object
 
+@allowed([
+  'new'
+  'existing'
+])
+param newOrExisting string = 'new'
 
-module appServicePlanModule 'br/CoreModules:appserviceplan:1.0_20230321202710' = {
+
+module appServicePlanModule 'br/CoreModules:appserviceplan:1.0_20230321202710' = if (newOrExisting == 'new') {
   name: appServicePlan.name
   params: {
     appServicePlanNameParam: appServicePlan.name
@@ -14,7 +20,7 @@ module appServicePlanModule 'br/CoreModules:appserviceplan:1.0_20230321202710' =
   }
 }
 
-module webAppModule 'br/CoreModules:webapp:1.0_20230321202710' = {
+module webAppModule 'br/CoreModules:webapp:1.0_20230321202710' = if (newOrExisting == 'existing') {
   name: webApp.name
   params: {
     appServicePlanIdParam: appServicePlanModule.outputs.aspId
@@ -23,7 +29,7 @@ module webAppModule 'br/CoreModules:webapp:1.0_20230321202710' = {
   }
 }
 
-module sqlDBserverModule 'br/CoreModules:sqldatabase:1.0_20230321202710' = {
+module sqlDBserverModule 'br/CoreModules:sqldatabase:1.0_20230321202710' = if (newOrExisting == 'new') {
   name: sqlServer.name
   params: {
     serverNameParam: sqlServer.name
