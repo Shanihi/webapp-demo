@@ -1,13 +1,6 @@
 name: Test Publish Bicep To ACR Workflow
 
-on:
-  workflow_dispatch:
-  push:
-    branches:
-      - main
-    paths:
-      - 'main.bicep'
-
+on: [push]
 permissions:
   id-token: write
   contents: read
