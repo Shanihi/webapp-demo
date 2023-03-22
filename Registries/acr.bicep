@@ -24,3 +24,4 @@ resource acrResource 'Microsoft.ContainerRegistry/registries@2021-06-01-preview'
 output loginServer string = acrResource.properties.loginServer
 
 
+

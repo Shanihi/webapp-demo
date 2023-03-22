@@ -1,7 +1,12 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\.github",
+    "\\.github\\workflows",
+    "\\bicep",
+    "\\bicep\\modules",
+    "\\bicep\\modules\\azure-container-registry"
   ],
-  "SelectedNode": "\\deploy.sh",
+  "SelectedNode": "\\bicep\\modules\\azure-container-registry\\main.bicep",
   "PreviewInSolutionExplorer": false
 }
