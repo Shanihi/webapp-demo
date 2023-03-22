@@ -3,10 +3,9 @@
     "",
     "\\.github",
     "\\.github\\workflows",
-    "\\bicep",
-    "\\bicep\\modules",
-    "\\bicep\\modules\\azure-container-registry"
+    "\\modules",
+    "\\registries"
   ],
-  "SelectedNode": "\\bicep\\modules\\azure-container-registry\\main.bicep",
+  "SelectedNode": "\\.github\\workflows\\deployBicepFileTesting.yml",
   "PreviewInSolutionExplorer": false
 }

@@ -11,11 +11,16 @@ env:
   MODULE_FILE_PATH: main.bicep
   MODULE_METADATA_FILE_PATH: metadata.json
 
+
 jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+    - uses: azure/login@v1
+      name: Sign in to Azure
+      with:
+       creds: ${{ secrets.AZURE_CRED_TEST }}
     - name: Run Bicep linter
       run: az bicep build --file ${{ env.MODULE_FILE_PATH }}
   
