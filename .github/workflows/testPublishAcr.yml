@@ -35,9 +35,16 @@ jobs:
        creds: ${{ secrets.AZURE_CRED_TEST }}
     - name: Get module version number
       run: |
-        majorMinorVersionNumber=$(jq '(.version.major | tostring) + "." + (.version.minor | tostring)' ${{ env.MODULE_METADATA_FILE_PATH }} -r )
-        versionNumber="$majorMinorVersionNumber.${{ github.run_number }}"
-        echo "MODULE_VERSION=$versionNumber" >> $GITHUB_ENV
+        version="v$(cat metadata.json | jq -r '.version.major').$(cat metadata.json | jq -r '.version.minor')"
+        if [ -z "$(az acr repository show -n ${{ secrets.ACR_SERVER }} --image bicep/modules/${d::-1}:$version 2>/dev/null)" ]; 
+            then 
+              echo "Publishing br:${{ secrets.ACR_SERVER }}/bicep/modules/${d::-1}:$version";
+              az bicep publish --file main.bicep --target "br:${{ secrets.ACR_SERVER }}/bicep/modules/${d::-1}:$version";
+            else 
+              echo "Skipping br:${{ secrets.ACR_SERVER }}/bicep/modules/${d::-1}:$version as it already exists";
+            fi
+            cd - > /dev/null
+          done
     - uses: azure/cli@v1
       name: Publish module
       with:
