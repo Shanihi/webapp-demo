@@ -36,12 +36,12 @@ jobs:
     - name: Get module version number
       run: |
         version="v$(cat metadata.json | jq -r '.version.major').$(cat metadata.json | jq -r '.version.minor')"
-        if [ -z "$(az acr repository show -n ${{ secrets.ACR_SERVER }} --image bicep/modules/${d::-1}:$version 2>/dev/null)" ]; 
+        if [ -z "$(az acr repository show -n ${{ secrets.ACR_SERVER }} --image bicep/modules/${d::-1}:$version 2>/dev/null)" ];
             then 
               echo "Publishing br:${{ secrets.ACR_SERVER }}/bicep/modules/${d::-1}:$version";
               az bicep publish --file main.bicep --target "br:${{ secrets.ACR_SERVER }}/bicep/modules/${d::-1}:$version";
             else 
-              echo "Skipping br:${{ secrets.ACR_SERVER }}/bicep/modules/${d::-1}:$version as it already exists";
+              echo "Skipping br:${{ secrets.ACR_SERVER }}/bicep/modules/${d::-1}:$version because it already exists";
             fi
             cd - > /dev/null
           done
