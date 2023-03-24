@@ -8,5 +8,18 @@
 				"registry": "shanBicepContainerRegistryTest.azurecr.io"
 			}
 		}
+	},
+	"cloud": {
+		"currentProfile": "AzureCloud",
+		"profiles": {
+			"AzureCloud": {
+				"resourceManagerEndpoint": "https://management.azure.com",
+				"activeDirectoryAuthority": "https://login.microsoftonline.com"
+			},
+			"credentialPrecedence": [
+				"AzureCLI",
+				"AzurePowerShell"
+			]
+		}
 	}
 }
