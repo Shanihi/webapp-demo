@@ -6,6 +6,6 @@
     "\\modules",
     "\\registries"
   ],
-  "SelectedNode": "\\bicepconfig.json",
+  "SelectedNode": "\\.github\\workflows\\deployBicepFileTesting.yml",
   "PreviewInSolutionExplorer": false
 }

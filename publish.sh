@@ -5,10 +5,15 @@ VERSION="1.0_$CURRENTDATE"
 
 echo "Publish App Service Plan $VERSION"
 az bicep publish -f ./modules/appServicePlan.bicep -t br:shanBicepContainerRegistryTest.azurecr.io/appserviceplan:$VERSION
+az bicep publish -f ./modules/appServicePlan.bicep -t br:shanBicepContainerRegistryTest.azurecr.io/appserviceplan:latest
 
 echo "Publish SQL Database $VERSION"
 az bicep publish -f ./modules/sqlDatabase.bicep -t br:shanBicepContainerRegistryTest.azurecr.io/sqldatabase:$VERSION
+az bicep publish -f ./modules/sqlDatabase.bicep -t br:shanBicepContainerRegistryTest.azurecr.io/sqldatabase:latest
 
 echo "Publish Web App $VERSION"
 az bicep publish -f ./modules/webApp.bicep -t br:shanBicepContainerRegistryTest.azurecr.io/webapp:$VERSION
+az bicep publish -f ./modules/webApp.bicep -t br:shanBicepContainerRegistryTest.azurecr.io/webapp:latest
+
+
 

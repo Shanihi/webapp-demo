@@ -10,7 +10,7 @@ param sqlDB object
 param newOrExisting string = 'new'
 
 
-module appServicePlanModule 'br/CoreModules:appserviceplan:1.0_20230321202710' = if (newOrExisting == 'new') {
+module appServicePlanModule 'br/CoreModules:appserviceplan:latest' = if (newOrExisting == 'new') {
   name: appServicePlan.name
   params: {
     appServicePlanNameParam: appServicePlan.name
@@ -20,7 +20,7 @@ module appServicePlanModule 'br/CoreModules:appserviceplan:1.0_20230321202710' =
   }
 }
 
-module webAppModule 'br/CoreModules:webapp:1.0_20230321202710' = if (newOrExisting == 'new') {
+module webAppModule 'br/CoreModules:webapp:latest' = if (newOrExisting == 'new') {
   name: webApp.name
   params: {
     appServicePlanIdParam: appServicePlanModule.outputs.aspId
@@ -29,7 +29,7 @@ module webAppModule 'br/CoreModules:webapp:1.0_20230321202710' = if (newOrExisti
   }
 }
 
-module sqlDBserverModule 'br/CoreModules:sqldatabase:1.0_20230321202710' = if (newOrExisting == 'new') {
+module sqlDBserverModule 'br/CoreModules:sqldatabase:latest' = if (newOrExisting == 'new') {
   name: sqlServer.name
   params: {
     serverNameParam: sqlServer.name
