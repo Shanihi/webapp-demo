@@ -44,5 +44,4 @@ jobs:
         inlineScript: |
           az bicep publish \
             --target 'br:${{ env.MODULE_REGISTRY_SERVER }}/${{ env.MODULE_NAME }}:${{ env.MODULE_VERSION }}' \
-            --parameters version=${{ env.MODULE_VERSION }}\
             --file ${{ env.MODULE_FILE_PATH }}
