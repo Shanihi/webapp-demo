@@ -1,11 +1,8 @@
 {
   "ExpandedNodes": [
     "",
-    "\\.github",
-    "\\.github\\workflows",
-    "\\modules",
-    "\\registries"
+    "\\modules"
   ],
-  "SelectedNode": "\\publish.sh",
+  "SelectedNode": "\\bicepconfig.json",
   "PreviewInSolutionExplorer": false
 }
