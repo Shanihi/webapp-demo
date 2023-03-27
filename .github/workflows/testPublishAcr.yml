@@ -48,6 +48,7 @@ jobs:
       name: Publish module
       with:
         inlineScript: |
+          curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
           az bicep publish \
             --target 'br:${{ env.MODULE_REGISTRY_SERVER }}/${{ env.MODULE_NAME }}:${{ env.MODULE_VERSION }}' \
             --file /home/runner/work/webapp-demo/webapp-demo/main.bicep
