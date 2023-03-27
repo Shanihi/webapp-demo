@@ -7,7 +7,7 @@ permissions:
 
 env:
   MODULE_NAME: appServicePlan
-  MODULE_REGISTRY_SERVER: shanbicepcontainerregistrytest.azurecr.io
+  MODULE_REGISTRY_SERVER: avanadeBicepContainerRegistry.azurecr.io
   MODULE_FILE_PATH: main.bicep
   MODULE_METADATA_FILE_PATH: metadata.json
 
@@ -20,7 +20,7 @@ jobs:
     - uses: azure/login@v1
       name: Sign in to Azure
       with:
-       creds: ${{ secrets.AZURE_CRED_TEST }}
+       creds: ${{ secrets.AZURE_CREDENTIALS_CLIENT }}
     - name: Run Bicep linter
       run: az bicep build --file ${{ env.MODULE_FILE_PATH }}
   
@@ -32,7 +32,7 @@ jobs:
     - uses: azure/login@v1
       name: Sign in to Azure
       with:
-       creds: ${{ secrets.AZURE_CRED_TEST }}
+       creds: ${{ secrets.AZURE_CREDENTIALS_CLIENT }}
     - name: Get module version number
       run: |
         majorMinorVersionNumber=$(jq '(.version.major | tostring) + "." + (.version.minor | tostring)' ${{ env.MODULE_METADATA_FILE_PATH }} -r )
