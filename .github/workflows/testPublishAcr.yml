@@ -8,7 +8,7 @@ permissions:
 env:
   MODULE_NAME: appServicePlan
   MODULE_REGISTRY_SERVER: avanadeBicepContainerRegistry.azurecr.io
-  MODULE_FILE_PATH: main.bicep
+  MODULE_FILE_PATH: ./main.bicep
   MODULE_METADATA_FILE_PATH: metadata.json
 
 
@@ -38,6 +38,7 @@ jobs:
         majorMinorVersionNumber=$(jq '(.version.major | tostring) + "." + (.version.minor | tostring)' ${{ env.MODULE_METADATA_FILE_PATH }} -r )
         versionNumber="$majorMinorVersionNumber.${{ github.run_number }}"
         echo "MODULE_VERSION=$versionNumber" >> $GITHUB_ENV
+    - uses: actions/checkout@v2
     - uses: azure/cli@v1
       name: Publish module
       with:
