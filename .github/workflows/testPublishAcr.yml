@@ -35,8 +35,14 @@ jobs:
        creds: ${{ secrets.AZURE_CREDENTIALS_CLIENT }}
     - name: Get module version number
       run: |
-        version=="v$(cat metadata.json | jq -r '.version.major').$(cat metadata.json | jq -r '.version.minor')"
-        echo "Publishing br:${{ env.MODULE_REGISTRY_SERVER }}/bicep/modules/${d::-1}:$version";
-        az bicep publish --file main.bicep --target "br:${{ env.MODULE_REGISTRY_SERVER }}/${{ env.MODULE_NAME }}:$version"
-        done
-        
+        majorMinorVersionNumber=$(jq '(.version.major | tostring) + "." + (.version.minor | tostring)' ${{ env.MODULE_METADATA_FILE_PATH }} -r )
+        versionNumber="$majorMinorVersionNumber.${{ github.run_number }}"
+        echo "MODULE_VERSION=$versionNumber" >> $GITHUB_ENV
+    - uses: azure/cli@v1
+      name: Publish module
+      with:
+        inlineScript: |
+          az bicep publish \
+            --target 'br:${{ env.MODULE_REGISTRY_SERVER }}/${{ env.MODULE_NAME }}:${{ env.MODULE_VERSION }}' \
+            --parameters ${{ env.MODULE_VERSION }}\
+            --file ${{ env.MODULE_FILE_PATH }}
