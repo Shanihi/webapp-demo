@@ -6,6 +6,6 @@
     "\\modules",
     "\\registries"
   ],
-  "SelectedNode": "\\.github\\workflows\\deployBicepFileTesting.yml",
+  "SelectedNode": "\\registries\\acr.bicep",
   "PreviewInSolutionExplorer": false
 }

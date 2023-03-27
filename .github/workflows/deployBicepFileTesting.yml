@@ -8,7 +8,7 @@ permissions:
 env:
     ENVIRONMENT: dev
     INPUT_REGION: westeurope
-    AZURE_RG: voorbeeld-resourcegroup 
+    AZURE_RG: fakeClientTestRG
     
 jobs:
   deploy:
@@ -21,9 +21,9 @@ jobs:
       # Log into Azure
     - uses: azure/login@v1
       with: # Set Azure credentials secret as an input
-       creds: ${{ secrets.AZURE_SECRET_VOORBEELDRG }}
+       creds: ${{ secrets.AZURE_CREDENTIALS_CLIENT }}
       env: # Or as an environment variable
-       creds: ${{ secrets.AZURE_SECRET_VOORBEELDRG }}
+       creds: ${{ secrets.AZURE_CREDENTIALS_CLIENT }}
 
     - uses: azure/arm-deploy@v1
       with: 

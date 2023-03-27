@@ -4,7 +4,7 @@
   "parameters": {
     "appServicePlan": {
       "value": {
-        "name": "demo-app-service-plan",
+        "name": "demo-app-service-plan-avanade",
         "kind": "linux",
         "sku": {
           "name": "B1",
@@ -14,13 +14,13 @@
     },
     "webApp": {
       "value": {
-        "name": "bicep-demo-webapp-shan",
+        "name": "demo-webapp-avanade",
         "linuxFxVersion": "DOCKER|mcr.microsoft.com/appsvc/staticsite:latest"
       }
     },
     "sqlServer": {
       "value": {
-        "name": "server-shan",
+        "name": "demo-server-avanade",
         "administratorLogin": "shanlogintest",
         "administratorLoginPassword": "Testtest123456!",
         "version": "12.0",
@@ -33,7 +33,7 @@
     },
     "sqlDB": {
       "value": {
-        "name": "database-shan",
+        "name": "demo-database-avanade",
         "sku": {
           "name": "Basic",
           "tier": "Basic",
@@ -69,7 +69,7 @@
         "zoneRedundant": false,
 
         "firewall": {
-          "name": "Firewall Shan",
+          "name": "Demo firewall Avanade",
           "startIpAddress": "19.0.0.0",
           "endIpAddress": "21.0.0.0"
         },
