@@ -33,15 +33,8 @@ jobs:
       name: Sign in to Azure
       with:
        creds: ${{ secrets.AZURE_CREDENTIALS_CLIENT }}
-    - name: Get module version number
-      run: |
-        majorMinorVersionNumber=$(jq '(.version.major | tostring) + "." + (.version.minor | tostring)' ${{ env.MODULE_METADATA_FILE_PATH }} -r )
-        versionNumber="$majorMinorVersionNumber.${{ github.run_number }}"
-        echo "MODULE_VERSION=$versionNumber" >> $GITHUB_ENV
     - uses: azure/cli@v1
       name: Publish module
       with:
         inlineScript: |
-          az bicep publish \
-            --target 'br:${{ env.MODULE_REGISTRY_SERVER }}/${{ env.MODULE_NAME }}:${{ env.MODULE_VERSION }}' \
-            --file ${{ env.MODULE_FILE_PATH }}
+          sh publish.sh
