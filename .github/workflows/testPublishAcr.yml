@@ -1,4 +1,4 @@
-name: Test Publish Bicep To ACR Workflow test
+name: Test Publish Bicep To ACR Workflow testing
 
 on: [push]
 permissions:
