@@ -42,8 +42,8 @@ jobs:
       run: |
         majorMinorVersionNumber=$(jq '(.version.major | tostring) + "." + (.version.minor | tostring)' ${{ env.MODULE_METADATA_FILE_PATH }} -r )
         versionNumber="$majorMinorVersionNumber.${{ github.run_number }}"
-        echo "MODULE_VERSION=$versionNumber" >> $GITHUB_ENV
-    - uses: actions/checkout@v2
+        #echo "module_version=$versionnumber" >> $github_env
+    #- uses: actions/checkout@v2
     - uses: azure/cli@v1
       name: Publish module
       with:

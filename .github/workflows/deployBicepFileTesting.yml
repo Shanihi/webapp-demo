@@ -1,34 +1,34 @@
-on: [push]
-name: Azure Bicep deploy test
+#on: [push]
+#name: Azure Bicep deploy test
 
-permissions:
-  id-token: write
-  contents: read
+#permissions:
+#  id-token: write
+#  contents: read
   
-env:
-    ENVIRONMENT: dev
-    INPUT_REGION: westeurope
-    AZURE_RG: fakeClientTestRG
+#env:
+#    ENVIRONMENT: dev
+#    INPUT_REGION: westeurope
+#    AZURE_RG: fakeClientTestRG
     
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
+#jobs:
+#  deploy:
+#    runs-on: ubuntu-latest
+#    steps:
 
-      # Checkout code
-    - uses: actions/checkout@main
+#      # Checkout code
+#    - uses: actions/checkout@main
 
-      # Log into Azure
-    - uses: azure/login@v1
-      with: # Set Azure credentials secret as an input
-       creds: ${{ secrets.AZURE_CREDENTIALS_CLIENT }}
-      env: # Or as an environment variable
-       creds: ${{ secrets.AZURE_CREDENTIALS_CLIENT }}
+#      # Log into Azure
+#    - uses: azure/login@v1
+#      with: # Set Azure credentials secret as an input
+#       creds: ${{ secrets.AZURE_CREDENTIALS_CLIENT }}
+#      env: # Or as an environment variable
+#       creds: ${{ secrets.AZURE_CREDENTIALS_CLIENT }}
 
-    - uses: azure/arm-deploy@v1
-      with: 
-        resourceGroupName: ${{ env.AZURE_RG }}
-        template: ./main.bicep
-        parameters: ./parameters.dev.json
-        scope: 'resourcegroup'
-        region: ${{ env.INPUT_REGION }}
+#    - uses: azure/arm-deploy@v1
+#      with: 
+#        resourceGroupName: ${{ env.AZURE_RG }}
+#        template: ./main.bicep
+#        parameters: ./parameters.dev.json
+#        scope: 'resourcegroup'
+#        region: ${{ env.INPUT_REGION }}
