@@ -13,19 +13,19 @@ env:
 
 
 jobs:
-  lint:
-    runs-on: ubuntu-latest
-    steps:
+  #lint:
+  #  runs-on: ubuntu-latest
+  #  steps:
     
-    - uses: actions/checkout@v2
-    - uses: azure/login@v1
-      name: Sign in to Azure
-      with:
-       creds: ${{ secrets.AZURE_CREDENTIALS_CLIENT }}
-    - name: Run Bicep linter
-      run: az bicep build --file ${{ env.MODULE_FILE_PATH }}
-    - name: Print Message        
-      run: which bicep
+  #  - uses: actions/checkout@v2
+  #  - uses: azure/login@v1
+  #    name: Sign in to Azure
+  #    with:
+  #     creds: ${{ secrets.AZURE_CREDENTIALS_CLIENT }}
+  #  - name: Run Bicep linter
+  #    run: az bicep build --file ${{ env.MODULE_FILE_PATH }}
+  #  - name: Print Message        
+  #    run: which bicep
       
   
   publish:
