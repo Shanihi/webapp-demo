@@ -42,7 +42,7 @@ jobs:
       run: |
         majorMinorVersionNumber=$(jq '(.version.major | tostring) + "." + (.version.minor | tostring)' ${{ env.MODULE_METADATA_FILE_PATH }} -r )
         versionNumber="$majorMinorVersionNumber.${{ github.run_number }}"
-        echo "MODULE_VERSION=$versionNumber" >> $GITHUB_ENV
+        echo "MODULE_VERSION=$versionNumber" #>> $GITHUB_ENV
     - uses: actions/checkout@v2
     - uses: azure/cli@v1
       name: Publish module
@@ -51,8 +51,11 @@ jobs:
           az config set bicep.use_binary_from_path=False.
           az bicep install 
           az bicep publish \
-            --target 'br:${{ env.MODULE_REGISTRY_SERVER }}/${{ env.MODULE_NAME }}:${{ env.MODULE_VERSION }}' \
+            --target 'br:${{ env.MODULE_REGISTRY_SERVER }}/${{ env.MODULE_NAME }}:latest' \
             --file ${{ env.MODULE_FILE_PATH }}
+          #az bicep publish \
+          #  --target 'br:${{ env.MODULE_REGISTRY_SERVER }}/${{ env.MODULE_NAME }}:${{ env.MODULE_VERSION }}' \
+          #  --file ${{ env.MODULE_FILE_PATH }}
             
             
             
