@@ -1,4 +1,4 @@
-param appServicePlan object
+param appServicePlanObject object
 param webApp object
 param sqlServer object
 param sqlDB object
@@ -11,12 +11,12 @@ param newOrExisting string = 'new'
 
 
 module appServicePlanModule 'br/CoreModules:appserviceplan:latest' = if (newOrExisting == 'new') {
-  name: appServicePlan.name
+  name: appServicePlanObject.name
   params: {
-    appServicePlanNameParam: appServicePlan.name
-    appServicePlanSkuNameParam: appServicePlan.sku.name
-    appServicePlanSkuTierParam: appServicePlan.sku.tier
-    appServiceKindParam: appServicePlan.kind
+    appServicePlanNameParam: appServicePlanObject.name
+    appServicePlanSkuNameParam: appServicePlanObject.sku.name
+    appServicePlanSkuTierParam: appServicePlanObject.sku.tier
+    appServiceKindParam: appServicePlanObject.kind
   }
 }
 
