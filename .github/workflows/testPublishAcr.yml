@@ -38,15 +38,18 @@ jobs:
       name: sign in to azure
       with:
        creds: ${{ secrets.azure_credentials_client }}
-    - run: 
+    - name: get module version number
+      run: |
         majorminorversionnumber=$(jq '(.version.major | tostring) + "." + (.version.minor | tostring)' ${{ env.module_metadata_file_path }} -r )
         versionnumber="$majorminorversionnumber.${{ github.run_number }}"
         echo "module_version=$versionnumber" 
     - uses: actions/checkout@v2
     - uses: azure/cli@v1
       name: publish module
-    - run: 
-          az bicep publish \
+      with:
+        azcliversion: latest
+        inlinescript: |
+          az /usr/local/bin/bicep publish \
             --target 'br:${{ env.module_registry_server }}/${{ env.module_name }}:${{ env.module_version }}' \
             --file ${{ env.module_file_path }}
             
