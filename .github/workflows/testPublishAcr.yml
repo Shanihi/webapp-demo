@@ -1,4 +1,4 @@
-name: test publish bicep to acr workflow
+name: Test Publish Bicep To ACR Workflow
 
 on: [push]
 permissions:
@@ -6,10 +6,10 @@ permissions:
   contents: read
 
 env:
-  module_name: appserviceplan
-  module_registry_server: avanadebicepcontainerregistry.azurecr.io
-  module_file_path: ./main.bicep
-  module_metadata_file_path: metadata.json
+  MODULE_NAME: appServicePlan
+  MODULE_REGISTRY_SERVER: avanadeBicepContainerRegistry.azurecr.io
+  MODULE_FILE_PATH: ./main.bicep
+  MODULE_METADATA_FILE_PATH: metadata.json
 
 
 jobs:
@@ -19,12 +19,12 @@ jobs:
     
     - uses: actions/checkout@v2
     - uses: azure/login@v1
-      name: sign in to azure
+      name: Sign in to Azure
       with:
-       creds: ${{ secrets.azure_credentials_client }}
-    - name: run bicep linter
-      run: az bicep build --file ${{ env.module_file_path }}
-    - name: print message        
+       creds: ${{ secrets.AZURE_CREDENTIALS_CLIENT }}
+    - name: Run Bicep linter
+      run: az bicep build --file ${{ env.MODULE_FILE_PATH }}
+    - name: Print Message        
       run: which bicep
       
   
@@ -35,23 +35,22 @@ jobs:
  
     - uses: actions/checkout@v2
     - uses: azure/login@v1
-      name: sign in to azure
+      name: Sign in to Azure
       with:
-       creds: ${{ secrets.azure_credentials_client }}
-    - name: get module version number
+       creds: ${{ secrets.AZURE_CREDENTIALS_CLIENT }}
+    - name: Get module version number
       run: |
-        majorminorversionnumber=$(jq '(.version.major | tostring) + "." + (.version.minor | tostring)' ${{ env.module_metadata_file_path }} -r )
-        versionnumber="$majorminorversionnumber.${{ github.run_number }}"
+        majorMinorVersionNumber=$(jq '(.version.major | tostring) + "." + (.version.minor | tostring)' ${{ env.MODULE_METADATA_FILE_PATH }} -r )
+        versionNumber="$majorMinorVersionNumber.${{ github.run_number }}"
         echo "module_version=$versionnumber" 
     - uses: actions/checkout@v2
     - uses: azure/cli@v1
-      name: publish module
+      name: Publish module
       with:
-        azcliversion: latest
-        inlinescript: |
-          az /usr/local/bin/bicep publish \
-            --target 'br:${{ env.module_registry_server }}/${{ env.module_name }}:${{ env.module_version }}' \
-            --file ${{ env.module_file_path }}
+        inlineScript: |
+          az bicep publish \
+            --target 'br:${{ env.MODULE_REGISTRY_SERVER }}/${{ env.MODULE_NAME }}:${{ env.MODULE_VERSION }}' \
+            --file ${{ env.MODULE_FILE_PATH }}
             
             
             
