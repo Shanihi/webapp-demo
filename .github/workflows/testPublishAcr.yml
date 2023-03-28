@@ -8,7 +8,7 @@ permissions:
 env:
   MODULE_NAME: appserviceplan
   MODULE_REGISTRY_SERVER: avanadeBicepContainerRegistry.azurecr.io
-  MODULE_FILE_PATH: ./main.bicep
+  MODULE_FILE_PATH: ./modules/appServicePlan.bicep
   MODULE_METADATA_FILE_PATH: metadata.json
 
 
