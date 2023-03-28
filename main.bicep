@@ -11,7 +11,7 @@ param newOrExisting string = 'new'
 
 
 module appServicePlanModule 'br/CoreModules:appserviceplan:latest' = if (newOrExisting == 'new') {
-  name: appServicePlanObject.name
+  name: 'demo-app-service-plan-avanade'
   params: {
     appServicePlanNameParam: appServicePlanObject.name
     appServicePlanSkuNameParam: appServicePlanObject.sku.name
