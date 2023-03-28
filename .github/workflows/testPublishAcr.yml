@@ -24,6 +24,8 @@ jobs:
        creds: ${{ secrets.AZURE_CREDENTIALS_CLIENT }}
     - name: Run Bicep linter
       run: |
+          az config set bicep.use_binary_from_path=False.
+          az bicep install 
           az bicep restore --file main.bicep --force 
           az bicep build --file ${{ env.MODULE_FILE_PATH }}
     - name: Print Message        
