@@ -47,8 +47,8 @@ jobs:
     - uses: azure/cli@v1
       name: Publish module
       with:
+        azcliversion: latest
         inlineScript: |
-          curl -sL https://aka.ms/InstallAzureCLIDeb | bash
           az bicep publish \
             --target 'br:${{ env.MODULE_REGISTRY_SERVER }}/${{ env.MODULE_NAME }}:${{ env.MODULE_VERSION }}' \
             --file /home/runner/work/webapp-demo/webapp-demo/main.bicep
