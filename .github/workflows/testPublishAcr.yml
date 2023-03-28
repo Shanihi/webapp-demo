@@ -51,8 +51,8 @@ jobs:
           az config set bicep.use_binary_from_path=False.
           az bicep install 
           az bicep publish \
-            --target 'br:${{ env.MODULE_REGISTRY_SERVER }}/${{ env.MODULE_NAME }}:${{ versionNumber }}' \
+            --target 'br:${{ env.MODULE_REGISTRY_SERVER }}/${{ env.MODULE_NAME }}:latest' \
             --file ${{ env.MODULE_FILE_PATH }}
             
             
-            
+            #${{ env.MODULE_VERSION }}
