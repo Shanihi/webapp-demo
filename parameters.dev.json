@@ -20,7 +20,7 @@
     },
     "sqlServer": {
       "value": {
-        "name": "demo-server-essenttttt",
+        "name": "demo-server-essent",
         "administratorLogin": "shanlogintest",
         "administratorLoginPassword": "Testtest123456!",
         "version": "12.0",
