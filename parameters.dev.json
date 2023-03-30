@@ -21,7 +21,7 @@
     "sqlServer": {
       "value": {
         "name": "demo-server-essent",
-        "administratorLogin": "shanlogintest",
+        "administratorLogin": "shanlogintesting",
         "administratorLoginPassword": "Testtest123456!",
         "version": "12.0",
         "federatedClientId": "",
