@@ -2,9 +2,9 @@
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
-    "appServicePlan": { 
+    "appServicePlan": {
       "value": {
-        "name": "demo-app-service-plan-essent",
+        "name": "test-demo-app-service-plan-essent",
         "kind": "linux",
         "sku": {
           "name": "B1",
@@ -14,13 +14,13 @@
     },
     "webApp": {
       "value": {
-        "name": "demo-webapp-essent",
+        "name": "test-demo-webapp-essent",
         "linuxFxVersion": "DOCKER|mcr.microsoft.com/appsvc/staticsite:latest"
       }
     },
     "sqlServer": {
       "value": {
-        "name": "demo-server-essent",
+        "name": "test-demo-server-essent",
         "administratorLogin": "shanlogintest",
         "administratorLoginPassword": "Testtest123456!",
         "version": "12.0",
@@ -33,7 +33,7 @@
     },
     "sqlDB": {
       "value": {
-        "name": "demo-database-essent",
+        "name": "test-demo-database-essent",
         "sku": {
           "name": "Basic",
           "tier": "Basic",
@@ -69,12 +69,12 @@
         "zoneRedundant": false,
 
         "firewall": {
-          "name": "demo-firewall-essent",
+          "name": "test-demo-firewall-essent",
           "startIpAddress": "19.0.0.0",
           "endIpAddress": "21.0.0.0"
         },
         "dependsOn": [
-          "[resourceId('Microsoft.Sql/servers', 'demo-server-essent')]"
+          "[resourceId('Microsoft.Sql/servers', 'test-demo-server-essent')]"
         ]
       }
     }

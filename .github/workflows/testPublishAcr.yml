@@ -1,4 +1,4 @@
-name: Publish Bicep To ACR Workflow
+name: Publish Server Bicep To ACR Workflow
 
 on: [push]
 permissions:
