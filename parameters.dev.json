@@ -33,9 +33,9 @@
     },
     "sqlDB": {
       "value": {
-        "name": "demo-database-essent",
+        "name": "demo-sql-database-essent",
         "sku": {
-          "name": "Basic",
+          "name": "Basic Sku Name",
           "tier": "Basic",
           "size": "5120",
           "capacity": 0,
