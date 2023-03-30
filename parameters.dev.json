@@ -33,7 +33,7 @@
     },
     "sqlDB": {
       "value": {
-        "name": "demo-sql-database-essent",
+        "name": "demo-database-essent",
         "sku": {
           "name": "Basic",
           "tier": "Basic",
