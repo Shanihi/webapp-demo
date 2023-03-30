@@ -4,7 +4,7 @@
   "parameters": {
     "appServicePlan": {
       "value": {
-        "name": "demo-app-service-plan-avanade",
+        "name": "demo-app-service-plan-essent",
         "kind": "linux",
         "sku": {
           "name": "B1",
@@ -14,13 +14,13 @@
     },
     "webApp": {
       "value": {
-        "name": "demo-webapp-avanade",
+        "name": "demo-webapp-essent",
         "linuxFxVersion": "DOCKER|mcr.microsoft.com/appsvc/staticsite:latest"
       }
     },
     "sqlServer": {
       "value": {
-        "name": "demo-server-avanade",
+        "name": "demo-server-essent",
         "administratorLogin": "shanlogintest",
         "administratorLoginPassword": "Testtest123456!",
         "version": "12.0",
@@ -33,7 +33,7 @@
     },
     "sqlDB": {
       "value": {
-        "name": "demo-database-avanade",
+        "name": "demo-database-essent",
         "sku": {
           "name": "Basic",
           "tier": "Basic",
@@ -69,12 +69,12 @@
         "zoneRedundant": false,
 
         "firewall": {
-          "name": "Demo firewall Avanade",
+          "name": "Demo firewall Essent",
           "startIpAddress": "19.0.0.0",
           "endIpAddress": "21.0.0.0"
         },
         "dependsOn": [
-          "[resourceId('Microsoft.Sql/servers', 'server-shan')]"
+          "[resourceId('Microsoft.Sql/servers', 'demo-server-essent')]"
         ]
       }
     }
