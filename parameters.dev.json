@@ -15,7 +15,10 @@
     "webApp": {
       "value": {
         "name": "test-demo-webapp-essent",
-        "linuxFxVersion": "DOCKER|mcr.microsoft.com/appsvc/staticsite:latest"
+        "linuxFxVersion": "DOCKER|mcr.microsoft.com/appsvc/staticsite:latest",
+        "dependsOn": [
+          "[resourceId('Microsoft.Web/serverfarms', 'test-demo-app-service-plan-essent')]"
+        ]
       }
     },
     "sqlServer": {
