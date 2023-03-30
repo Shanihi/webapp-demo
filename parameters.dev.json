@@ -69,7 +69,7 @@
         "zoneRedundant": false,
 
         "firewall": {
-          "name": "Demo firewall Essent",
+          "name": "demo-firewall-essent",
           "startIpAddress": "19.0.0.0",
           "endIpAddress": "21.0.0.0"
         },
