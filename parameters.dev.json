@@ -35,7 +35,7 @@
       "value": {
         "name": "demo-sql-database-essent",
         "sku": {
-          "name": "Basic Sku Name",
+          "name": "Basic",
           "tier": "Basic",
           "size": "5120",
           "capacity": 0,
