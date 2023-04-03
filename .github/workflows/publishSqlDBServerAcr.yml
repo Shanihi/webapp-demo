@@ -1,4 +1,4 @@
-name: Publish SQL Database and server Bicep To ACR Workflow 
+name: Publish SQL Database and Server Bicep To ACR Workflow
 
 on: [push]
 permissions:
