@@ -1,4 +1,4 @@
-name: Publish App Service Plan Bicep To ACR Workflow
+name: Publish SQL Database and server Bicep To ACR Workflow 
 
 on: [push]
 permissions:
@@ -6,9 +6,9 @@ permissions:
   contents: read
 
 env:
-  MODULE_NAME: appserviceplan
+  MODULE_NAME: sqldatabase
   MODULE_REGISTRY_SERVER: avanadeBicepContainerRegistry.azurecr.io
-  MODULE_FILE_PATH: ./modules/appServicePlan.bicep 
+  MODULE_FILE_PATH: ./modules/sqlDatabase.bicep 
   MODULE_METADATA_FILE_PATH: metadata.json
 
 
@@ -43,7 +43,7 @@ jobs:
         versionNumber="$majorMinorVersionNumber.${{ github.run_number }}"
         echo "MODULE_VERSION=$versionNumber" >> $GITHUB_ENV
     - uses: azure/cli@v1
-      name: Publish app service plan module with version tag
+      name: Publish SQL database and server module with version tag
       with:
         inlineScript: |
           az config set bicep.use_binary_from_path=False.
@@ -52,7 +52,7 @@ jobs:
             --file ${{ env.MODULE_FILE_PATH }} \
             --target 'br:${{ env.MODULE_REGISTRY_SERVER }}/${{ env.MODULE_NAME }}:${{ env.MODULE_VERSION }}' 
     - uses: azure/cli@v1
-      name: Publish app service plan module with latest tag 
+      name: Publish SQL database and server module with latest tag 
       with:
         inlineScript: |      
           az config set bicep.use_binary_from_path=False.
