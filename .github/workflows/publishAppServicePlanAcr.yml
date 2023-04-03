@@ -43,15 +43,18 @@ jobs:
         versionNumber="$majorMinorVersionNumber.${{ github.run_number }}"
         echo "MODULE_VERSION=$versionNumber" >> $GITHUB_ENV
     - uses: azure/cli@v1
-      name: Publish module
+      name: Publish module with version tag
       with:
         inlineScript: |
           az config set bicep.use_binary_from_path=False.
           az bicep install 
           az bicep publish \
             --target 'br:${{ env.MODULE_REGISTRY_SERVER }}/${{ env.MODULE_NAME }}:${{ env.MODULE_VERSION }}' \
-            --file ${{ env.MODULE_FILE_PATH }}\
-          
+            --file ${{ env.MODULE_FILE_PATH }}
+    - uses: azure/cli@v1
+      name: Publish module with latest tag
+      with:
+        inlineScript: |      
           az config set bicep.use_binary_from_path=False.
           az bicep install 
           az bicep publish \
