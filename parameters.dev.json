@@ -4,7 +4,7 @@
   "parameters": {
     "appServicePlan": {
       "value": {
-        "name": "test-demo-app-service-plan-essentt",
+        "name": "demo-app-service-plan-avanade",
         "kind": "linux",
         "sku": {
           "name": "B1",
@@ -14,16 +14,16 @@
     },
     "webApp": {
       "value": {
-        "name": "test-demo-webapp-essentt",
+        "name": "demo-webapp-avanade",
         "linuxFxVersion": "DOCKER|mcr.microsoft.com/appsvc/staticsite:latest",
         "dependsOn": [
-          "[resourceId('Microsoft.Web/serverfarms', 'test-demo-app-service-plan-essentt')]"
+          "[resourceId('Microsoft.Web/serverfarms', 'demo-app-service-plan-avanade')]"
         ]
       }
     },
     "sqlServer": {
       "value": {
-        "name": "test-demo-server-essentt",
+        "name": "demo-server-avanade",
         "administratorLogin": "shanlogintest",
         "administratorLoginPassword": "Testtest123456!",
         "version": "12.0",
@@ -36,7 +36,7 @@
     },
     "sqlDB": {
       "value": {
-        "name": "test-demo-database-essentt",
+        "name": "demo-database-avanade",
         "sku": {
           "name": "Basic",
           "tier": "Basic",
@@ -72,12 +72,12 @@
         "zoneRedundant": false,
 
         "firewall": {
-          "name": "test-demo-firewall-essentt",
+          "name": "demo-firewall-avanade",
           "startIpAddress": "19.0.0.0",
           "endIpAddress": "21.0.0.0"
         },
         "dependsOn": [
-          "[resourceId('Microsoft.Sql/servers', 'test-demo-server-essentt')]"
+          "[resourceId('Microsoft.Sql/servers', 'demo-server-avanade')]"
         ]
       }
     }
