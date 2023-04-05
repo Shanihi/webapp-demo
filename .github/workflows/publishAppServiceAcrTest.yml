@@ -1,0 +1,13 @@
+name: Caller workflow publish App Service Plan
+
+on: [push]
+
+jobs:
+  publish:
+    uses: ./.github/workflows/reusableWorkflow.yml
+    with:
+      MODULE_NAME: appserviceplan
+      MODULE_REGISTRY_SERVER: avanadeBicepContainerRegistry.azurecr.io
+      MODULE_FILE_PATH: ./modules/appServicePlan.bicep 
+      MODULE_METADATA_FILE_PATH: metadata.json
+    secrets: inherit

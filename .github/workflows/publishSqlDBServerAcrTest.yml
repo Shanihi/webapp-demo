@@ -1,10 +1,10 @@
-name: Sample workflow publish sqldb test
+name: Caller workflow publish SQL DB 
 
 on: [push]
 
 jobs:
   publish:
-    uses: ./.github/workflows/workflowBreusable.yml
+    uses: ./.github/workflows/reusableWorkflow.yml
     with:
       MODULE_NAME: sqldatabase
       MODULE_REGISTRY_SERVER: avanadeBicepContainerRegistry.azurecr.io
