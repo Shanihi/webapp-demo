@@ -28,7 +28,6 @@ jobs:
        creds: ${{ secrets.AZURE_CREDENTIALS_CLIENT }}
     - name: Run Bicep linter
       run: |
-          az bicep version
           az bicep build --file ${{ env.MODULE_FILE_PATH }}
   
   publish:
