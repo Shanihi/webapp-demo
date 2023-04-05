@@ -1,4 +1,4 @@
-name: Reusable workflow example B
+name: Reusable workflow example B server
 
 on:
   workflow_call:
@@ -41,7 +41,7 @@ jobs:
        creds: ${{ secrets.AZURE_CREDENTIALS_CLIENT }}
     - name: Get module version number
       run: |
-        majorMinorVersionNumber=$(jq '(.version.major | tostring) + "." + (.version.minor | tostring)' ${{ env.MODULE_METADATA_FILE_PATH }} -r )
+        majorMinorVersionNumber=$(jq '(.version.major | tostring) + "." + (.version.minor | tostring)' ${{ inputs.MODULE_METADATA_FILE_PATH }} -r )
         versionNumber="$majorMinorVersionNumber.${{ github.run_number }}"
         echo "MODULE_VERSION=$versionNumber" >> $GITHUB_ENV
     - uses: azure/cli@v1
