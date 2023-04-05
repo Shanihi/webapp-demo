@@ -1,7 +1,6 @@
 name: Sample workflow publish sqldb test
 
-on:
-    workflow_dispatch:
+on: [push]
 
 jobs:
   publish:
