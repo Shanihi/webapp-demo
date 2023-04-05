@@ -1,4 +1,4 @@
-name: Sample workflow publiish sqldb
+name: Sample workflow publish sqldb test
 
 on:
     workflow_dispatch:
