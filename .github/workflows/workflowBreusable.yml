@@ -41,7 +41,7 @@ jobs:
        creds: ${{ secrets.AZURE_CREDENTIALS_CLIENT }}
     - name: Get module version number
       run: |
-        majorMinorVersionNumber=$(jq '(.version.major | tostring) + "." + (.version.minor | tostring)' ${{ inputs.MODULE_METADATA_FILE_PATH }} -r )
+        majorMinorVersionNumber=$(jq '(.version.major | tostring) + "." + (.version.minor | tostring)' ${{ env.MODULE_METADATA_FILE_PATH }} -r )
         versionNumber="$majorMinorVersionNumber.${{ github.run_number }}"
         echo "MODULE_VERSION=$versionNumber" >> $GITHUB_ENV
     - uses: azure/cli@v1
@@ -52,7 +52,7 @@ jobs:
           az bicep install 
           az bicep publish \
             --file ${{ inputs.MODULE_FILE_PATH }} \
-            --target 'br:${{ inputs.MODULE_REGISTRY_SERVER }}/${{ inputs.MODULE_NAME }}:${{ inputs.MODULE_VERSION }}' 
+            --target 'br:${{ inputs.MODULE_REGISTRY_SERVER }}/${{ inputs.MODULE_NAME }}:${{ env.MODULE_VERSION }}' 
     - uses: azure/cli@v1
       name: Publish web app module with latest tag 
       with:
