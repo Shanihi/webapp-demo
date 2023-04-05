@@ -1,0 +1,21 @@
+name: Sample workflow publiish sqldb
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+  publish:
+    needs: build
+    uses: ./.github/workflows/workflowBreusable.yml
+    with:
+      MODULE_NAME: sqldatabase
+      MODULE_REGISTRY_SERVER: avanadeBicepContainerRegistry.azurecr.io
+      MODULE_FILE_PATH: ./modules/sqlDatabase.bicep 
+      MODULE_METADATA_FILE_PATH: metadata.json
+    secrets: inherit
+

@@ -6,6 +6,6 @@
     "\\modules",
     "\\registries"
   ],
-  "SelectedNode": "\\modules\\sqlDatabase.bicep",
+  "SelectedNode": "\\modules\\appServicePlan.bicep",
   "PreviewInSolutionExplorer": false
 }
