@@ -26,6 +26,7 @@
         "name": "demo-server-avanade",
         "administratorLogin": "logintestavanade",
         "administratorLoginPassword": {
+          "type": "securestring",
           "reference": {
             "keyVault": {
               "id": "/subscriptions/f2a939a1-0cba-42d3-a107-63746fc62812/resourceGroups/fakeClientTestRG/providers/Microsoft.KeyVault/vaults/clientKeyVaultDemo"
