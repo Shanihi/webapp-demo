@@ -21,9 +21,9 @@ jobs:
       # log into azure
     - uses: azure/login@v1
       with: # set azure credentials secret as an input
-       creds: ${{ secrets.azure_credentials_client }}
+       creds: ${{ secrets.AZURE_CREDENTIALS_CLIENT }}
       env: # or as an environment variable
-       creds: ${{ secrets.azure_credentials_client }}
+       creds: ${{ secrets.AZURE_CREDENTIALS_CLIENT }}
 
     - uses: azure/arm-deploy@v1
       with: 
