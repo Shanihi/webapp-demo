@@ -3,20 +3,11 @@ param webApp object
 param sqlServer object
 param sqlDB object
 
-param subscriptionId string
-param kvResourceGroup string
-param kvName string
-
 @allowed([
   'new'
   'existing'
 ])
 param newOrExisting string = 'new'
-
-resource kv 'Microsoft.KeyVault/vaults@2019-09-01' existing = {
-  name: kvName
-  scope: resourceGroup(subscriptionId, kvResourceGroup )
-}
 
 module appServicePlanModule 'br/CoreModules:appserviceplan:latest' = if (newOrExisting == 'new') {
   name: appServicePlan.name
