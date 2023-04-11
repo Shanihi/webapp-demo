@@ -57,7 +57,7 @@ param sqlSourceResourceIdParam string
 param sqlZoneRedundantParam bool
 
 @secure()
-param administratorLoginPasswordParam string
+param administratorLoginPasswordParam object
 
 param sqlDBFirewallNameParam string
 param sqlStartIpAddressParam string
