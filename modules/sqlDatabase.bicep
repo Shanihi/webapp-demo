@@ -154,6 +154,7 @@ resource sqlServer 'Microsoft.Sql/servers@2022-05-01-preview' = {
     administratorLogin: administratorLoginParam
     administratorLoginPassword: administratorLoginPasswordParam
     version: serverVersionParam
+
     federatedClientId: federatedClientIdParam
     minimalTlsVersion: minimalTlsVersionPeram
     primaryUserAssignedIdentityId: primaryUserAssignedIdentityIdParam
