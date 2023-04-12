@@ -17,7 +17,7 @@ jobs:
     with:
       environmentType: prod
       resourceGroupName: fakeClientTestDevRG
-      creds: ${{ secrets.AZURE_CREDENTIALS_DEV }}
+    secrets: ${{ secrets.AZURE_CREDENTIALS_DEV }}
       
   deploy_prod:
     name: Deploy to Prod
@@ -26,5 +26,5 @@ jobs:
     with:
       environmentType: prod
       resourceGroupName: fakeClientTestProdRG
-      creds: ${{ secrets.AZURE_CREDENTIALS_PROD }}
+    secrets: ${{ secrets.AZURE_CREDENTIALS_PROD }}
         

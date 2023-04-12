@@ -9,6 +9,11 @@ on:
       resourceGroupName:
         required: true
         type: string
+    secrets:
+      dev_secret:
+        required: true
+      prod_secret:
+        required: true
 
 jobs:
   validate:
