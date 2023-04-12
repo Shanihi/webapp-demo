@@ -13,7 +13,7 @@ param location string = resourceGroup().location
 param environmentName string
 
 @description('Provide name for your Web Application, suffixing the environmentParam defined in the main.bicep template.')
-var webAppName = '${webAppNameParam}${environmentName}'
+var webAppName = '${webAppNameParam}-${environmentName}'
 
 
 
