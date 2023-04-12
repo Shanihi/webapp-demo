@@ -27,8 +27,7 @@ jobs:
          failOnStdErr: false
          resourceGroupName: ${{ inputs.resourceGroupName }}
          template: ./main.bicep
-         parameters: >
-           environmentType=${{ inputs.environmentType }}
+         parameters: environmentType=${{ inputs.environmentType }}
          additionalArguments: --what-if
 
   deploy:
