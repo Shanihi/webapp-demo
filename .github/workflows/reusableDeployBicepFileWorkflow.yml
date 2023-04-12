@@ -34,7 +34,7 @@ jobs:
 
 
   deploy:
-    name: Start deployment to ${{ inputs.environmentType }}
+    name: Start deployment 
     needs: validate
     runs-on: ubuntu-latest
     environment: ${{ inputs.environmentType }}
