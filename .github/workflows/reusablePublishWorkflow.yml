@@ -1,65 +1,65 @@
-#name: Reusable workflow Publish ACR test
+name: Reusable workflow Publish ACR test
 
-#on:
-#  workflow_call:
-#    inputs:
-#      MODULE_NAME:
-#        required: true
-#        type: string
-#      MODULE_REGISTRY_SERVER:
-#        required: true
-#        type: string
-#      MODULE_FILE_PATH:
-#        required: true
-#        type: string
-#      MODULE_METADATA_FILE_PATH:
-#        required: true
-#        type: string
+on:
+  workflow_call:
+    inputs:
+      MODULE_NAME:
+        required: true
+        type: string
+      MODULE_REGISTRY_SERVER:
+        required: true
+        type: string
+      MODULE_FILE_PATH:
+        required: true
+        type: string
+      MODULE_METADATA_FILE_PATH:
+        required: true
+        type: string
 
-#jobs:
-#  lint:
-#    runs-on: ubuntu-latest
-#    steps:
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
     
-#    - uses: actions/checkout@v2
-#    - uses: azure/login@v1
-#      name: Sign in to Azure
-#      with:
-#       creds: ${{ secrets.AZURE_CREDENTIALS_CLIENT }}
-#    - name: Run Bicep linter
-#      run: az bicep build --file ${{ inputs.MODULE_FILE_PATH }}
+    - uses: actions/checkout@v2
+    - uses: azure/login@v1
+      name: Sign in to Azure
+      with:
+       creds: ${{ secrets.AZURE_CREDENTIALS_CLIENT }}
+    - name: Run Bicep linter
+      run: az bicep build --file ${{ inputs.MODULE_FILE_PATH }}
   
-#  publish:
-#    runs-on: ubuntu-latest
-#    needs: [ lint ]
-#    steps:
+  publish:
+    runs-on: ubuntu-latest
+    needs: [ lint ]
+    steps:
  
-#    - uses: actions/checkout@v2
-#    - uses: azure/login@v1
-#      name: Sign in to Azure
-#      with:
-#       creds: ${{ secrets.AZURE_CREDENTIALS_CLIENT }}
-#    - name: Get module version number
-#      run: |
-#        majorMinorVersionNumber=$(jq '(.version.major | tostring) + "." + (.version.minor | tostring)' ${{ inputs.MODULE_METADATA_FILE_PATH }} -r )
-#        versionNumber="$majorMinorVersionNumber.${{ github.run_number }}"
-#        echo "MODULE_VERSION=$versionNumber" >> $GITHUB_ENV
-#    - uses: azure/cli@v1
-#      name: Publish web app module with version tag
-#      with:
-#        inlineScript: |
-#          az config set bicep.use_binary_from_path=False.
-#          az bicep install 
-#          az bicep publish \
-#            --file ${{ inputs.MODULE_FILE_PATH }} \
-#            --target 'br:${{ inputs.MODULE_REGISTRY_SERVER }}/${{ inputs.MODULE_NAME }}:${{ env.MODULE_VERSION }}' 
-#    - uses: azure/cli@v1
-#      name: Publish web app module with latest tag 
-#      with:
-#        inlineScript: |      
-#          az config set bicep.use_binary_from_path=False.
-#          az bicep install 
-#          az bicep publish \
-#            --file ${{ inputs.MODULE_FILE_PATH }} \
-#            --target 'br:${{ inputs.MODULE_REGISTRY_SERVER }}/${{ inputs.MODULE_NAME }}:latest' 
+    - uses: actions/checkout@v2
+    - uses: azure/login@v1
+      name: Sign in to Azure
+      with:
+       creds: ${{ secrets.AZURE_CREDENTIALS_CLIENT }}
+    - name: Get module version number
+      run: |
+        majorMinorVersionNumber=$(jq '(.version.major | tostring) + "." + (.version.minor | tostring)' ${{ inputs.MODULE_METADATA_FILE_PATH }} -r )
+        versionNumber="$majorMinorVersionNumber.${{ github.run_number }}"
+        echo "MODULE_VERSION=$versionNumber" >> $GITHUB_ENV
+    - uses: azure/cli@v1
+      name: Publish web app module with version tag
+      with:
+        inlineScript: |
+          az config set bicep.use_binary_from_path=False.
+          az bicep install 
+          az bicep publish \
+            --file ${{ inputs.MODULE_FILE_PATH }} \
+            --target 'br:${{ inputs.MODULE_REGISTRY_SERVER }}/${{ inputs.MODULE_NAME }}:${{ env.MODULE_VERSION }}' 
+    - uses: azure/cli@v1
+      name: Publish web app module with latest tag 
+      with:
+        inlineScript: |      
+          az config set bicep.use_binary_from_path=False.
+          az bicep install 
+          az bicep publish \
+            --file ${{ inputs.MODULE_FILE_PATH }} \
+            --target 'br:${{ inputs.MODULE_REGISTRY_SERVER }}/${{ inputs.MODULE_NAME }}:latest' 
             
