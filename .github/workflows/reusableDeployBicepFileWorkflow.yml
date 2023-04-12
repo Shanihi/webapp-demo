@@ -20,7 +20,7 @@ jobs:
        env: 
         creds: ${{ secrets.AZURE_CREDENTIALS_CLIENT }}
 
-     - if: inputs.environmentType == 'prod'
+     - if: inputs.environmentType == 'Production'
        uses: azure/arm-deploy@v1
        name: Run what-if
        with:
