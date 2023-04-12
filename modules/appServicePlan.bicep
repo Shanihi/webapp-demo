@@ -9,7 +9,7 @@ param location string = resourceGroup().location
 
 
 @description('Provide name for App Service Plan, suffixing the environmentParam defined in the main.bicep template.')
-var appServicePlanName = 'asp-${uniqueString(appServicePlanNameParam)}'
+var appServicePlanName = 'appserviceplan-${uniqueString(appServicePlanNameParam)}'
 
 
 
