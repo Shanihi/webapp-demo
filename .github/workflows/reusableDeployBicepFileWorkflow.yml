@@ -9,6 +9,9 @@ on:
       resourceGroupName:
         required: true
         type: string
+    secrets: 
+        AZURE_CREDENTIALS_CLIENT_DEV:
+            required: true
 
 jobs:
   validate:
