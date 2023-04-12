@@ -3,15 +3,47 @@ name: Deploy Template
 on:
   workflow_call:
     inputs:
-      ENVIRONMENT:
+      environment:
         type: string
         required: true
+      resourceGroupName:
+        required: true
+        type: string
 
 jobs:
+  validate:
+     runs-on: ubuntu-latest
+     steps:
+     - uses: azure/login@v1
+       with: # set azure credentials secret as an input
+        creds: ${{ secrets.AZURE_CREDENTIALS_CLIENT }}
+       env: # or as an environment variable
+        creds: ${{ secrets.AZURE_CREDENTIALS_CLIENT }}
+     - if: inputs.environmentType != 'Production'
+       uses: azure/arm-deploy@v1
+       name: Run preflight validation
+       with:
+         deploymentName: ${{ github.run_number }}
+         resourceGroupName: ${{ inputs.resourceGroupName }}
+         template: ./main.bicep
+         parameters: >
+           environmentType=${{ inputs.environmentType }}
+         deploymentMode: Validate
+     - if: inputs.environmentType == 'Production'
+       uses: azure/arm-deploy@v1
+       name: Run what-if
+       with:
+         failOnStdErr: false
+         resourceGroupName: ${{ inputs.resourceGroupName }}
+         template: ./main.bicep
+         parameters: >
+           environmentType=${{ inputs.environmentType }}
+         additionalArguments: --what-if
+
   deploy:
-    name: Start deployment to ${{ inputs.ENVIRONMENT }}
+    name: Start deployment to ${{ inputs.environment }}
     runs-on: ubuntu-latest
-    environment: ${{ inputs.ENVIRONMENT }}
+    environment: ${{ inputs.environment }}
     steps:
       # checkout code
     - uses: actions/checkout@main

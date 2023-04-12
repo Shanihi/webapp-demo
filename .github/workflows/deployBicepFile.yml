@@ -7,7 +7,8 @@ jobs:
     name: Deploy to Dev
     uses: ./.github/workflows/reusableDeployBicepFileWorkflow.yml
     with:
-      ENVIRONMENT: dev
+      environmentType: prod
+      resourceGroupName: fakeclienttestrg
     secrets: inherit
       
   deploy_prod:
@@ -15,5 +16,6 @@ jobs:
     needs: deploy_dev
     uses: ./.github/workflows/reusableDeployBicepFileWorkflow.yml
     with:
-      ENVIRONMENT: prod
+      environmentType: prod
+      resourceGroupName: fakeclienttestrg
     secrets: inherit 
