@@ -17,9 +17,8 @@ jobs:
      - uses: actions/checkout@v2
      - uses: azure/login@v1
        with: 
-        creds: ${{ secrets.AZURE_CREDENTIALS_CLIENT }}
-       env: 
-        creds: ${{ secrets.AZURE_CREDENTIALS_CLIENT }}
+        secrets: inherit
+       env: ${{ inputs.environmentType }}
 
      - if: inputs.environmentType == 'prod'
        uses: azure/arm-deploy@v1
@@ -47,9 +46,8 @@ jobs:
       # log into azure
     - uses: azure/login@v1
       with: # set azure credentials secret as an input
-       creds: ${{ secrets.AZURE_CREDENTIALS_CLIENT }}
-      env: # or as an environment variable
-       creds: ${{ secrets.AZURE_CREDENTIALS_CLIENT }}
+       secrets: inherit
+      env: ${{ inputs.environmentType }}
 
     - uses: azure/arm-deploy@v1
       with: 
