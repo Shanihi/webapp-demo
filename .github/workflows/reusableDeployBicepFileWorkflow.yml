@@ -24,6 +24,7 @@ jobs:
      - if: inputs.environmentType == 'prod'
        uses: azure/arm-deploy@v1
        name: Run what-if
+       env: ${{ inputs.environmentType }}
        with:
          failOnStdErr: false
          resourceGroupName: ${{ inputs.resourceGroupName }}
@@ -32,14 +33,14 @@ jobs:
          additionalArguments: --what-if
          scope: 'resourcegroup'
          region: westeurope
-         environment: ${{ inputs.environmentType }}
+        
 
 
   deploy:
     name: Start deployment to ${{ inputs.environmentType }}
     needs: validate
     runs-on: ubuntu-latest
-    environment: ${{ inputs.environmentType }}
+    env: ${{ inputs.environmentType }}
     steps:
       # checkout code
     - uses: actions/checkout@main
