@@ -8,6 +8,7 @@ jobs:
     uses: ./.github/workflows/reusableDeployBicepFileWorkflow.yml
     with:
       ENVIRONMENT: dev
+    secrets: inherit
       
   deploy_prod:
     name: Deploy to Prod
@@ -15,4 +16,4 @@ jobs:
     uses: ./.github/workflows/reusableDeployBicepFileWorkflow.yml
     with:
       ENVIRONMENT: prod
-     
+    secrets: inherit 
