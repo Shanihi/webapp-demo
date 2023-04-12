@@ -15,9 +15,9 @@ jobs:
     name: Deploy to Dev
     uses: ./.github/workflows/reusableDeployBicepFileWorkflow.yml
     with:
-      environmentType: prod
+      environmentType: dev
       resourceGroupName: fakeClientTestDevRG
-    secrets: ${{ secrets.AZURE_CREDENTIALS_CLIENT_DEV }}
+    secrets: inherit 
       
   deploy_prod:
     name: Deploy to Prod
