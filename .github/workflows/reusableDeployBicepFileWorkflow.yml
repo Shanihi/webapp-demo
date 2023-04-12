@@ -18,13 +18,11 @@ jobs:
      - uses: azure/login@v1
        with: 
         creds: ${{ secrets.AZURE_CREDENTIALS_CLIENT }}
-       env: 
-        creds: ${{ secrets.AZURE_CREDENTIALS_CLIENT }}
+       env: ${{ inputs.environmentType }}
 
      - if: inputs.environmentType == 'prod'
        uses: azure/arm-deploy@v1
        name: Run what-if
-       env: ${{ inputs.environmentType }}
        with:
          failOnStdErr: false
          resourceGroupName: ${{ inputs.resourceGroupName }}
