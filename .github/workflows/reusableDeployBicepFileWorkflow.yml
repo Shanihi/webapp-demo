@@ -15,12 +15,12 @@ jobs:
      runs-on: ubuntu-latest
      steps:
      - uses: azure/login@v1
-       with: # set azure credentials secret as an input
+       with: 
         creds: ${{ secrets.AZURE_CREDENTIALS_CLIENT }}
-       env: # or as an environment variable
+       env: 
         creds: ${{ secrets.AZURE_CREDENTIALS_CLIENT }}
 
-     - if: inputs.environmentType == 'Production'
+     - if: inputs.environmentType == 'prod'
        uses: azure/arm-deploy@v1
        name: Run what-if
        with:
