@@ -19,6 +19,7 @@ jobs:
         creds: ${{ secrets.AZURE_CREDENTIALS_CLIENT }}
        env: # or as an environment variable
         creds: ${{ secrets.AZURE_CREDENTIALS_CLIENT }}
+
      - if: inputs.environmentType == 'Production'
        uses: azure/arm-deploy@v1
        name: Run what-if
@@ -47,7 +48,7 @@ jobs:
 
     - uses: azure/arm-deploy@v1
       with: 
-        resourcegroupname: inputs.resourceGroupName
+        resourcegroupname: ${{ inputs.resourceGroupName }}
         template: ./main.bicep
         parameters: ./parameters.dev.json
         scope: 'resourcegroup'
