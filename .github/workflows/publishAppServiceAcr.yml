@@ -4,7 +4,7 @@
 
 #jobs:
 #  publish:
-#    uses: ./.github/workflows/reusableWorkflow.yml
+#    uses: ./.github/workflows/reusablePublishWorkflow.yml
 #    with:
 #      MODULE_NAME: appserviceplan
 #      MODULE_REGISTRY_SERVER: avanadeBicepContainerRegistry.azurecr.io

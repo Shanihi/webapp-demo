@@ -1,0 +1,32 @@
+name: Deploy Template
+
+on:
+  workflow_call:
+    inputs:
+      ENVIRONMENT:
+        type: string
+        required: true
+
+jobs:
+  deploy:
+    name: Start deployment to ${{ inputs.ENVIRONMENT }}
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.ENVIRONMENT }}
+    steps:
+      # checkout code
+    - uses: actions/checkout@main
+
+      # log into azure
+    - uses: azure/login@v1
+      with: # set azure credentials secret as an input
+       creds: ${{ secrets.AZURE_CREDENTIALS_CLIENT }}
+      env: # or as an environment variable
+       creds: ${{ secrets.AZURE_CREDENTIALS_CLIENT }}
+
+    - uses: azure/arm-deploy@v1
+      with: 
+        resourcegroupname: fakeclienttestrg
+        template: ./main.bicep
+        parameters: ./parameters.dev.json
+        scope: 'resourcegroup'
+        region: westeurope

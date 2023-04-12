@@ -1,34 +1,19 @@
-on: [push]
-name: Azure Bicep Deployment Workflow
+name: Caller workflow deploy Bicep templates
 
-permissions:
-  id-token: write
-  contents: read
-  
-env:
-    environment: dev
-    input_region: westeurope
-    azure_rg: fakeclienttestrg
-    
+on:
+  workflow_dispatch:
+
 jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-
-      # checkout code
-    - uses: actions/checkout@main
-
-      # log into azure
-    - uses: azure/login@v1
-      with: # set azure credentials secret as an input
-       creds: ${{ secrets.AZURE_CREDENTIALS_CLIENT }}
-      env: # or as an environment variable
-       creds: ${{ secrets.AZURE_CREDENTIALS_CLIENT }}
-
-    - uses: azure/arm-deploy@v1
-      with: 
-        resourcegroupname: ${{ env.azure_rg }}
-        template: ./main.bicep
-        parameters: ./parameters.dev.json
-        scope: 'resourcegroup'
-        region: ${{ env.input_region }}
+  deploy_dev:
+    name: Deploy to Dev
+    uses: ./.github/workflows/reusableDeployBicepFileWorkflow.yml
+    with:
+      ENVIRONMENT: dev
+      
+  deploy_prod:
+    name: Deploy to Prod
+    needs: deploy_dev
+    uses: ./.github/workflows/reusableDeployBicepFileWorkflow.yml
+    with:
+      ENVIRONMENT: prod
+     
