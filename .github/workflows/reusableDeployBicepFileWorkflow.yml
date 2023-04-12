@@ -43,7 +43,7 @@ jobs:
   deploy:
     name: Start deployment to ${{ inputs.environmentType }}
     runs-on: ubuntu-latest
-    environmentType: ${{ inputs.environmentType }}
+    environment: ${{ inputs.environmentType }}
     steps:
       # checkout code
     - uses: actions/checkout@main
