@@ -1,6 +1,14 @@
 name: Caller workflow deploy Bicep templates
 
-on: [push]
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: read
 
 jobs:
   deploy_dev:

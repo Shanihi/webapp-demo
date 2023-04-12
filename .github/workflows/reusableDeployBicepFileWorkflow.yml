@@ -3,7 +3,7 @@ name: Deploy Template
 on:
   workflow_call:
     inputs:
-      environment:
+      environmentType:
         type: string
         required: true
       resourceGroupName:
@@ -41,9 +41,9 @@ jobs:
          additionalArguments: --what-if
 
   deploy:
-    name: Start deployment to ${{ inputs.environment }}
+    name: Start deployment to ${{ inputs.environmentType }}
     runs-on: ubuntu-latest
-    environment: ${{ inputs.environment }}
+    environmentType: ${{ inputs.environmentType }}
     steps:
       # checkout code
     - uses: actions/checkout@main
@@ -57,7 +57,7 @@ jobs:
 
     - uses: azure/arm-deploy@v1
       with: 
-        resourcegroupname: fakeclienttestrg
+        resourcegroupname: inputs.resourceGroupName
         template: ./main.bicep
         parameters: ./parameters.dev.json
         scope: 'resourcegroup'
