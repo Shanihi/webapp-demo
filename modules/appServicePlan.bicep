@@ -2,12 +2,20 @@ param appServicePlanNameParam string
 param appServicePlanSkuNameParam string
 param appServicePlanSkuTierParam string
 param appServiceKindParam string
+
+@allowed([
+  'dev'
+  'prod'
+])
+param environmentName string
+
 @description('Provide a location for the registry.')
 param location string = resourceGroup().location
 
 
 @description('Provide name for App Service Plan, suffixing the environmentParam defined in the main.bicep template.')
-var appServicePlanName = appServicePlanNameParam
+var appServicePlanName = '${appServicePlanNameParam}${environmentName}'
+
 
 
 resource appServicePlan 'Microsoft.Web/serverfarms@2020-12-01' = {

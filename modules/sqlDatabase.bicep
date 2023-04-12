@@ -6,6 +6,11 @@ param minimalTlsVersionPeram string
 param primaryUserAssignedIdentityIdParam string
 param publicNetworkAccessParam string
 param restrictOutboundNetworkAccessParam string
+@allowed([
+  'dev'
+  'prod'
+])
+param environmentName string
 
 @description('Azure database for MySQL pricing tier')
 @allowed([
@@ -64,13 +69,13 @@ param sqlStartIpAddressParam string
 param sqlEndIpAddressParam string
 
 @description('Provide unique name for sql DB server name')
-var serverName = 'sql-${uniqueString(serverNameParam)}'
+var serverName = 'sql-${uniqueString(serverNameParam)}${environmentName}'
 
 @description('Provide name for sql DB, suffixing server name with sql DB name ')
-var sqlDBName = sqlDBNameParam
+var sqlDBName = '${sqlDBNameParam}${environmentName}'
 
 @description('Provide name for sql DB, suffixing server name with sql DB name ')
-var sqlDBFirewallName = sqlDBFirewallNameParam
+var sqlDBFirewallName = '${sqlDBFirewallNameParam}${environmentName}'
 
 var basicSqlProperties =  {
     autoPauseDelay: sqlAutoPauseDelayParam

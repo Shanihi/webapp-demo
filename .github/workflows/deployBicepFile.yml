@@ -25,5 +25,5 @@ jobs:
     uses: ./.github/workflows/reusableDeployBicepFileWorkflow.yml
     with:
       environmentType: prod
-      resourceGroupName: fakeclienttestrg
+      resourceGroupName: fakeClientTestProdRG 
     secrets: inherit 
