@@ -28,8 +28,12 @@ jobs:
          failOnStdErr: false
          resourceGroupName: ${{ inputs.resourceGroupName }}
          template: ./main.bicep
-         parameters: environmentType=${{ inputs.environmentType }}
+         parameters: ./parameters.dev.json
          additionalArguments: --what-if
+         scope: 'resourcegroup'
+         region: westeurope
+         environment: ${{ inputs.environmentType }}
+
 
   deploy:
     name: Start deployment to ${{ inputs.environmentType }}
