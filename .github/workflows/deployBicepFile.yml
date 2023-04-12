@@ -1,4 +1,4 @@
-name: Caller workflow deploy Bicep templates
+name: Caller workflow deploy Bicep resources
 
 on:
   push:

@@ -11,7 +11,6 @@ param location string = resourceGroup().location
 var webAppName = 'wa-${uniqueString(webAppNameParam)}'
 
 
-
 resource webApp 'Microsoft.Web/sites@2021-01-01' = {
   name: webAppName
   location: location
