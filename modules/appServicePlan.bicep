@@ -14,7 +14,7 @@ param location string = resourceGroup().location
 
 
 @description('Provide name for App Service Plan, suffixing the environmentParam defined in the main.bicep template.')
-var appServicePlanName = '${appServicePlanNameParam}-${environmentName}'
+var appServicePlanName = '${uniqueString(appServicePlanNameParam)}-${environmentName}'
 
 
 
