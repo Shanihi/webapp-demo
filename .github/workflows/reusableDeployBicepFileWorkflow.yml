@@ -18,7 +18,6 @@ jobs:
      - uses: azure/login@v1
        with: 
         creds: ${{ secrets.AZURE_CREDENTIALS_CLIENT }}
-       env: ${{ inputs.environmentType }}
 
      - if: inputs.environmentType == 'prod'
        uses: azure/arm-deploy@v1
@@ -31,14 +30,14 @@ jobs:
          additionalArguments: --what-if
          scope: 'resourcegroup'
          region: westeurope
-        
+         
 
 
   deploy:
     name: Start deployment to ${{ inputs.environmentType }}
     needs: validate
     runs-on: ubuntu-latest
-    env: ${{ inputs.environmentType }}
+    environment: ${{ inputs.environmentType }}
     steps:
       # checkout code
     - uses: actions/checkout@main
@@ -46,8 +45,6 @@ jobs:
       # log into azure
     - uses: azure/login@v1
       with: # set azure credentials secret as an input
-       creds: ${{ secrets.AZURE_CREDENTIALS_CLIENT }}
-      env: # or as an environment variable
        creds: ${{ secrets.AZURE_CREDENTIALS_CLIENT }}
 
     - uses: azure/arm-deploy@v1
