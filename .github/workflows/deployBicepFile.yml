@@ -1,7 +1,6 @@
 name: Caller workflow deploy Bicep templates
 
-on:
-  workflow_dispatch:
+on: [push]
 
 jobs:
   deploy_dev:
