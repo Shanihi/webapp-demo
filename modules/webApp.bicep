@@ -8,7 +8,7 @@ param location string = resourceGroup().location
 
 
 @description('Provide name for your Web Application, suffixing the environmentParam defined in the main.bicep template.')
-var webAppName = 'webapp-${uniqueString(webAppNameParam)}'
+var webAppName = '${webAppNameParam}-${uniqueString(resourceGroup().id)}'
 
 
 resource webApp 'Microsoft.Web/sites@2021-01-01' = {

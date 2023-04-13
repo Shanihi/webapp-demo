@@ -64,14 +64,14 @@ param sqlStartIpAddressParam string
 param sqlEndIpAddressParam string
 
 @description('Provide unique name for sql DB server name')
-var serverName = 'server-${uniqueString(serverNameParam)}'
+var serverName = '${serverNameParam}-${uniqueString(resourceGroup().id)}'
 
 @description('Provide name for sql DB, suffixing server name with sql DB name ')
-var sqlDBName = 'db-${uniqueString(sqlDBNameParam)}'
+var sqlDBName = '${sqlDBNameParam}-${uniqueString(resourceGroup().id)}'
 
 
 @description('Provide name for sql DB, suffixing server name with sql DB name ')
-var sqlDBFirewallName = 'firewall-${uniqueString(sqlDBFirewallNameParam)}'
+var sqlDBFirewallName = '${sqlDBFirewallNameParam}-${uniqueString(resourceGroup().id)}'
 
 var basicSqlProperties =  {
     autoPauseDelay: sqlAutoPauseDelayParam
