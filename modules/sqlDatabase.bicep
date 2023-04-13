@@ -69,7 +69,6 @@ var serverName = '${serverNameParam}-${uniqueString(resourceGroup().id)}'
 @description('Provide name for sql DB, suffixing server name with sql DB name ')
 var sqlDBName = '${sqlDBNameParam}-${uniqueString(resourceGroup().id)}'
 
-
 @description('Provide name for sql DB, suffixing server name with sql DB name ')
 var sqlDBFirewallName = '${sqlDBFirewallNameParam}-${uniqueString(resourceGroup().id)}'
 
