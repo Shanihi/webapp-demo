@@ -39,7 +39,7 @@ jobs:
     environment: ${{ inputs.environmentType }}
     steps:
       # checkout code
-    - uses: actions/checkout@main
+    - uses: actions/checkout@v2
 
       # log into azure
     - uses: azure/login@v1
