@@ -12,7 +12,7 @@ permissions:
 
 jobs:
   deploy_dev:
-    name: Deploy to development
+    name: Deploy to dev
     uses: ./.github/workflows/reusableDeployBicepFileWorkflow.yml
     with:
       environmentType: dev
@@ -20,7 +20,7 @@ jobs:
     secrets: inherit 
       
   deploy_prod:
-    name: Deploy to production
+    name: Deploy to prod
     needs: deploy_dev
     uses: ./.github/workflows/reusableDeployBicepFileWorkflow.yml
     with:
