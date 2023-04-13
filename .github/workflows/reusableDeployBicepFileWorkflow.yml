@@ -32,7 +32,6 @@ jobs:
          region: westeurope
          
 
-
   deploy:
     name: Start deployment 
     needs: validate
