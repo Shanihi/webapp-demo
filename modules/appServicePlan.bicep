@@ -3,7 +3,7 @@ param appServicePlanSkuNameParam string
 param appServicePlanSkuTierParam string
 param appServiceKindParam string
 
-@description('Provide a location for the registry.')
+@description('Provide a location for the app servcice plan.')
 param location string = resourceGroup().location
 
 @description('Provide name for App Service Plan, suffixing the environmentParam defined in the main.bicep template.')
