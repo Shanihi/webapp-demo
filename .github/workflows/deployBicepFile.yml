@@ -1,4 +1,4 @@
-name: Caller workflow deploy Bicep resources
+name: Caller workflow deploy Azure resources
 
 on:
   push:
