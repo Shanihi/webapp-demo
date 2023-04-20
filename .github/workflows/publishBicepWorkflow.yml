@@ -36,3 +36,4 @@ jobs:
       MODULE_FILE_PATH: ./modules/webApp.bicep 
       MODULE_METADATA_FILE_PATH: metadata.json
     secrets: inherit
+
