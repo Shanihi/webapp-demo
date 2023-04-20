@@ -1,13 +1,13 @@
-name: Caller workflow publish Web App
+#name: Caller workflow publish Web App
 
-on: [push]
+#on: [push]
 
-jobs:
-  publish:
-    uses: ./.github/workflows/reusablePublishWorkflow.yml
-    with:
-      MODULE_NAME: webapp
-      MODULE_REGISTRY_SERVER: avanadeBicepContainerRegistry.azurecr.io
-      MODULE_FILE_PATH: ./modules/webApp.bicep 
-      MODULE_METADATA_FILE_PATH: metadata.json
-    secrets: inherit
+#jobs:
+#  publish:
+#    uses: ./.github/workflows/reusablePublishWorkflow.yml
+#    with:
+#      MODULE_NAME: webapp
+#      MODULE_REGISTRY_SERVER: avanadeBicepContainerRegistry.azurecr.io
+#      MODULE_FILE_PATH: ./modules/webApp.bicep 
+#      MODULE_METADATA_FILE_PATH: metadata.json
+#    secrets: inherit
