@@ -2,6 +2,7 @@ param appServicePlan object
 param webApp object
 param sqlServer object
 param sqlDB object
+param administratorLoginPassword object
 
 @allowed([
   'new'
@@ -33,7 +34,7 @@ module sqlDBserverModule 'br/CoreModules:sqldatabase:latest' = if (newOrExisting
   params: {
     serverNameParam: sqlServer.name
     administratorLoginParam: sqlServer.administratorLogin
-    administratorLoginPasswordParam: sqlServer.administratorLoginPassword
+    administratorLoginPasswordParam: sqlServer.administratorLoginPassword.secretName
     serverVersionParam: sqlServer.version
     federatedClientIdParam: sqlServer.federatedClientId
     minimalTlsVersionPeram: sqlServer.minimalTlsVersion
