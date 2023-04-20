@@ -2,6 +2,8 @@ param appServicePlan object
 param webApp object
 param sqlServer object
 param sqlDB object
+
+@secure()
 param administratorLoginPassword object
 
 @allowed([
