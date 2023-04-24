@@ -3,7 +3,7 @@ param webApp object
 param sqlServer object
 param sqlDB object
 param keyVault object
-param secretNameKeyVault string = sqlServer.administratorLoginPassword.secretName 
+param secretNameKeyVault string = 'secretPasswordSql'
 
 @allowed([
   'new'
