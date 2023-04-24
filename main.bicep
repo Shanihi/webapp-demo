@@ -3,6 +3,7 @@ param webApp object
 param sqlServer object
 param sqlDB object
 param keyVault object
+param secretNameKeyVault string = 'secretPasswordSql'
 
 @allowed([
   'new'
@@ -39,7 +40,7 @@ module sqlDBserverModule 'br/CoreModules:sqldatabase:latest' = if (newOrExisting
   params: {
     serverNameParam: sqlServer.name
     administratorLoginParam: sqlServer.administratorLogin
-    administratorLoginPasswordParam: kv.getSecret('secretPasswordSql')
+    administratorLoginPasswordParam: kv.getSecret(secretNameKeyVault)
     serverVersionParam: sqlServer.version
     federatedClientIdParam: sqlServer.federatedClientId
     minimalTlsVersionPeram: sqlServer.minimalTlsVersion
