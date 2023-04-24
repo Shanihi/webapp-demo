@@ -2,12 +2,6 @@
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
-    "keyVault": {
-      "value": {
-        "name": "testAvanadeKeyVault",
-        "kind": "linux"
-      }
-    },
     "appServicePlan": {
       "value": {
         "name": "demo-app-service-plan-avanade",
@@ -31,6 +25,7 @@
       "value": {
         "name": "demo-server-avanade",
         "administratorLogin": "logintestavanade",
+        "kvName": "testAvanadeKeyVault",
         "administratorLoginPassword": {
           "reference": {
             "keyVault": {

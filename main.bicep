@@ -3,11 +3,6 @@ param webApp object
 param sqlServer object
 param sqlDB object
 
-param keyVault object
-
-param subscriptionId string
-param kvResourceGroup string
-
 @allowed([
   'new'
   'existing'
@@ -33,10 +28,9 @@ module webAppModule 'br/CoreModules:webapp:latest' = if (newOrExisting == 'new')
   }
 }
 
-resource kv 'Microsoft.KeyVault/vaults@2019-09-01' existing = {
-  name: keyVault.name
-  scope: resourceGroup(subscriptionId, kvResourceGroup )
-}
+resource kv 'Microsoft.KeyVault/vaults@2022-11-01' existing = {
+  name: sqlServer.kvName
+} 
 
 module sqlDBserverModule 'br/CoreModules:sqldatabase:latest' = if (newOrExisting == 'new') {
   name: sqlServer.name
