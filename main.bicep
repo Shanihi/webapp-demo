@@ -2,6 +2,7 @@ param appServicePlan object
 param webApp object
 param sqlServer object
 param sqlDB object
+
 param subscriptionId string
 param kvResourceGroup string
 param kvName string
@@ -41,7 +42,7 @@ module sqlDBserverModule 'br/CoreModules:sqldatabase:latest' = if (newOrExisting
   params: {
     serverNameParam: sqlServer.name
     administratorLoginParam: sqlServer.administratorLogin
-    administratorPassword: kv.getSecret('secretPasswordSql')
+    administratorLoginPasswordParam: sqlServer.secretName
     serverVersionParam: sqlServer.version
     federatedClientIdParam: sqlServer.federatedClientId
     minimalTlsVersionPeram: sqlServer.minimalTlsVersion
