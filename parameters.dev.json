@@ -34,7 +34,9 @@
         "administratorLoginPassword": {
           "reference": {
             "keyVault": {
-              "id": "/subscriptions/f2a939a1-0cba-42d3-a107-63746fc62812/resourceGroups/myAvanadeACR/providers/Microsoft.KeyVault/vaults/testAvanadeKeyVault"
+              "id": "/subscriptions/f2a939a1-0cba-42d3-a107-63746fc62812/resourceGroups/myAvanadeACR/providers/Microsoft.KeyVault/vaults/testAvanadeKeyVault",
+              "name": "testAvanadeKeyVault",
+              "resourceGroup": "myAvanadeACR"
             },
             "secretName": "secretPasswordSql"
           }

@@ -11,25 +11,6 @@ param secretNameKeyVault string = 'secretPasswordSql'
 ])
 param newOrExisting string = 'new'
 
-module appServicePlanModule 'br/CoreModules:appserviceplan:latest' = if (newOrExisting == 'new') {
-  name: appServicePlan.name
-  params: {
-    appServicePlanNameParam: appServicePlan.name
-    appServicePlanSkuNameParam: appServicePlan.sku.name
-    appServicePlanSkuTierParam: appServicePlan.sku.tier
-    appServiceKindParam: appServicePlan.kind
-  }
-}
-
-module webAppModule 'br/CoreModules:webapp:latest' = if (newOrExisting == 'new') {
-  name: webApp.name
-  params: {
-    appServicePlanIdParam: appServicePlanModule.outputs.aspId
-    linuxFxVersionParam: webApp.linuxFxVersion
-    webAppNameParam: webApp.name
-  }
-}
-
 resource kv 'Microsoft.KeyVault/vaults@2022-11-01' existing = {
   name: keyVault.name
   scope: resourceGroup(keyVault.resourceGroup)
@@ -82,5 +63,24 @@ module sqlDBserverModule 'br/CoreModules:sqldatabase:latest' = if (newOrExisting
     sqlDBFirewallNameParam: sqlDB.firewall.name
     sqlStartIpAddressParam: sqlDB.firewall.startIpAddress
     sqlEndIpAddressParam: sqlDB.firewall.endIpAddress
+  }
+}
+
+module appServicePlanModule 'br/CoreModules:appserviceplan:latest' = if (newOrExisting == 'new') {
+  name: appServicePlan.name
+  params: {
+    appServicePlanNameParam: appServicePlan.name
+    appServicePlanSkuNameParam: appServicePlan.sku.name
+    appServicePlanSkuTierParam: appServicePlan.sku.tier
+    appServiceKindParam: appServicePlan.kind
+  }
+}
+
+module webAppModule 'br/CoreModules:webapp:latest' = if (newOrExisting == 'new') {
+  name: webApp.name
+  params: {
+    appServicePlanIdParam: appServicePlanModule.outputs.aspId
+    linuxFxVersionParam: webApp.linuxFxVersion
+    webAppNameParam: webApp.name
   }
 }
