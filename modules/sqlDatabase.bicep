@@ -57,7 +57,7 @@ param sqlSourceResourceIdParam string
 param sqlZoneRedundantParam bool
 
 @secure()
-param administratorLoginPasswordParam string
+param administratorLoginPassword string
 
 param sqlDBFirewallNameParam string
 param sqlStartIpAddressParam string
@@ -154,7 +154,7 @@ resource sqlServer 'Microsoft.Sql/servers@2022-05-01-preview' = {
 
   properties: {
     administratorLogin: administratorLoginParam
-    administratorLoginPassword: administratorLoginPasswordParam
+    administratorLoginPassword: administratorLoginPassword
     version: serverVersionParam
 
     federatedClientId: federatedClientIdParam

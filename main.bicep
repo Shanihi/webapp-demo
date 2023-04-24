@@ -30,7 +30,7 @@ module webAppModule 'br/CoreModules:webapp:latest' = if (newOrExisting == 'new')
 }
 
 resource keyVault 'Microsoft.KeyVault/vaults@2022-11-01' existing = {
-  name: 'myAvanadeKeyVault'
+  name: 'testAvanadeKeyVault'
 }
 
 module sqlDBserverModule 'br/CoreModules:sqldatabase:latest' = if (newOrExisting == 'new') {
