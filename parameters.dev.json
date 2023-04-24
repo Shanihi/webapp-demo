@@ -21,11 +21,16 @@
         ]
       }
     },
+    "keyVault": {
+      "value": {
+        "name": "testAvanadeKeyVault",
+        "resourceGroup": "myAvanadeACR"
+      }
+    },
     "sqlServer": {
       "value": {
         "name": "demo-server-avanade",
         "administratorLogin": "logintestavanade",
-        "kvName": "testAvanadeKeyVault",
         "administratorLoginPassword": {
           "reference": {
             "keyVault": {
