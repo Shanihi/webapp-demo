@@ -9,7 +9,6 @@ param sqlDB object
 ])
 param newOrExisting string = 'new'
 
-
 module appServicePlanModule 'br/CoreModules:appserviceplan:latest' = if (newOrExisting == 'new') {
   name: appServicePlan.name
   params: {
@@ -29,16 +28,12 @@ module webAppModule 'br/CoreModules:webapp:latest' = if (newOrExisting == 'new')
   }
 }
 
-resource keyVault 'Microsoft.KeyVault/vaults@2022-11-01' existing = {
-  name: 'testAvanadeKeyVault'
-}
-
 module sqlDBserverModule 'br/CoreModules:sqldatabase:latest' = if (newOrExisting == 'new') {
   name: sqlServer.name
   params: {
     serverNameParam: sqlServer.name
     administratorLoginParam: sqlServer.administratorLogin
-    administratorLoginPasswordParam: keyVault.getSecret('sqladminpassword')
+    administratorLoginPasswordParam: sqlServer.administratorLoginPassword
     serverVersionParam: sqlServer.version
     federatedClientIdParam: sqlServer.federatedClientId
     minimalTlsVersionPeram: sqlServer.minimalTlsVersion
