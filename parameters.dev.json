@@ -25,7 +25,14 @@
       "value": {
         "name": "demo-server-avanade",
         "administratorLogin": "logintestavanade",
-        "administratorLoginPassword": "testwachtwoord1234!@",
+        "administratorLoginPassword": {
+          "reference": {
+            "keyVault": {
+              "id": "/subscriptions/f2a939a1-0cba-42d3-a107-63746fc62812/resourceGroups/myAvanadeACR/providers/Microsoft.KeyVault/vaults/myAvanadeKeyVault"
+            },
+            "secretName": "sqladminpassword"
+          }
+        },
         "version": "12.0",
         "federatedClientId": "",
         "minimalTlsVersion": "1.2",
