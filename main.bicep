@@ -2,6 +2,9 @@ param appServicePlan object
 param webApp object
 param sqlServer object
 param sqlDB object
+param subscriptionId string
+param kvResourceGroup string
+param kvName string
 
 @allowed([
   'new'
@@ -28,12 +31,17 @@ module webAppModule 'br/CoreModules:webapp:latest' = if (newOrExisting == 'new')
   }
 }
 
+resource kv 'Microsoft.KeyVault/vaults@2019-09-01' existing = {
+  name: kvName
+  scope: resourceGroup(subscriptionId, kvResourceGroup )
+}
+
 module sqlDBserverModule 'br/CoreModules:sqldatabase:latest' = if (newOrExisting == 'new') {
   name: sqlServer.name
   params: {
     serverNameParam: sqlServer.name
     administratorLoginParam: sqlServer.administratorLogin
-    administratorLoginPasswordParam: sqlServer.administratorLoginPassword.value
+    administratorPassword: kv.getSecret('secretPasswordSql')
     serverVersionParam: sqlServer.version
     federatedClientIdParam: sqlServer.federatedClientId
     minimalTlsVersionPeram: sqlServer.minimalTlsVersion
