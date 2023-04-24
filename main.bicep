@@ -33,7 +33,7 @@ module sqlDBserverModule 'br/CoreModules:sqldatabase:latest' = if (newOrExisting
   params: {
     serverNameParam: sqlServer.name
     administratorLoginParam: sqlServer.administratorLogin
-    administratorLoginPasswordParam: sqlServer.administratorLoginPassword
+    administratorLoginPasswordParam: sqlServer.administratorLoginPassword.value
     serverVersionParam: sqlServer.version
     federatedClientIdParam: sqlServer.federatedClientId
     minimalTlsVersionPeram: sqlServer.minimalTlsVersion
