@@ -1,5 +1,9 @@
 param serverNameParam string
 param administratorLoginParam string
+
+@secure()
+param administratorLoginPasswordParam string
+
 param serverVersionParam string
 param federatedClientIdParam string
 param minimalTlsVersionPeram string
@@ -55,10 +59,6 @@ param sqlSourceDatabaseDeletionDateParam string
 param sqlSourceDatabaseIdParam string
 param sqlSourceResourceIdParam string
 param sqlZoneRedundantParam bool
-
-@secure()
-param administratorLoginPasswordParam string
-
 param sqlDBFirewallNameParam string
 param sqlStartIpAddressParam string
 param sqlEndIpAddressParam string
