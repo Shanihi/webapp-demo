@@ -3,7 +3,6 @@ param administratorLoginParam string
 
 @secure()
 param administratorLoginPasswordParam string
-
 param serverVersionParam string
 param federatedClientIdParam string
 param minimalTlsVersionPeram string
