@@ -42,4 +42,4 @@ For publishing to the ACR, there will be two tags added. One is a version tag wh
 ### Deploying Azure resources using GitHub reusable workflows
 After changing the parameters to your preference, you need to change the resource group in the deployment workflow to your own resource groups. The Azure resources will be deployed to a development and production environment. With a push to GitHub you can start the automated deployment process. If you wish to change the trigger of the workflow, you can change the 'on' trigger in the deployBicepWorkflow.yml file. 
 
-Congratulations! After configuring these steps, you have fully automated workflows which you can use to deploy your Azure resources and publish your reusable Bicep templates!
+*Congratulations! After configuring these steps, you have fully automated workflows which you can use to deploy your Azure resources and publish your reusable Bicep templates!*
