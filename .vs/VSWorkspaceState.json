@@ -6,5 +6,6 @@
     "\\modules",
     "\\registries"
   ],
+  "SelectedNode": "\\.github\\workflows\\deployBicepWorkflow.yml",
   "PreviewInSolutionExplorer": false
 }
