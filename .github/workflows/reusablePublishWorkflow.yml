@@ -58,6 +58,7 @@ jobs:
       with:
         inlineScript: |      
           az config set bicep.use_binary_from_path=False.
+          az upgrade
           az bicep install
           az bicep publish \
             --file ${{ inputs.MODULE_FILE_PATH }}  \
