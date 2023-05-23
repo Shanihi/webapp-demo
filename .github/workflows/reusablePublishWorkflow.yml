@@ -1,4 +1,4 @@
-name: Reusable workflow Publish ACR 
+name: Reusable workflow Publish ACR test
 
 on:
   workflow_call:
@@ -60,6 +60,6 @@ jobs:
           az config set bicep.use_binary_from_path=False.
           az bicep install 
           az bicep publish \
-            --file ${{ inputs.MODULE_FILE_PATH }} --force \
+            --file ${{ inputs.MODULE_FILE_PATH }}  \
             --target 'br:${{ inputs.MODULE_REGISTRY_SERVER }}/${{ inputs.MODULE_NAME }}:latest' 
             
