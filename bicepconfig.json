@@ -1,9 +1,6 @@
 {
 	"moduleAliases": {
 		"br": {
-			"bicepreg": {
-				"registry": "avanadeBicepContainerRegistry.azurecr.io"
-			},
 			"CoreModules": {
 				"registry": "avanadeBicepContainerRegistry.azurecr.io"
 			}
