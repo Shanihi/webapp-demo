@@ -16,6 +16,25 @@ resource kv 'Microsoft.KeyVault/vaults@2022-11-01' existing = {
   scope: resourceGroup(keyVault.resourceGroup)
 } 
 
+module appServicePlanModule 'br/CoreModules:appserviceplan:latest' = if (newOrExisting == 'new') {
+  name: appServicePlan.name
+  params: {
+    appServicePlanNameParam: appServicePlan.name
+    appServicePlanSkuNameParam: appServicePlan.sku.name
+    appServicePlanSkuTierParam: appServicePlan.sku.tier
+    appServiceKindParam: appServicePlan.kind
+  }
+}
+
+module webAppModule 'br/CoreModules:webapp:latest' = if (newOrExisting == 'new') {
+  name: webApp.name
+  params: {
+    appServicePlanIdParam: appServicePlanModule.outputs.aspId
+    linuxFxVersionParam: webApp.linuxFxVersion
+    webAppNameParam: webApp.name
+  }
+}
+
 module sqlDBserverModule 'br/CoreModules:sqldatabase:latest' = if (newOrExisting == 'new') {
   name: sqlServer.name
   params: {
@@ -66,21 +85,3 @@ module sqlDBserverModule 'br/CoreModules:sqldatabase:latest' = if (newOrExisting
   }
 }
 
-module appServicePlanModule 'br/CoreModules:appserviceplan:latest' = if (newOrExisting == 'new') {
-  name: appServicePlan.name
-  params: {
-    appServicePlanNameParam: appServicePlan.name
-    appServicePlanSkuNameParam: appServicePlan.sku.name
-    appServicePlanSkuTierParam: appServicePlan.sku.tier
-    appServiceKindParam: appServicePlan.kind
-  }
-}
-
-module webAppModule 'br/CoreModules:webapp:latest' = if (newOrExisting == 'new') {
-  name: webApp.name
-  params: {
-    appServicePlanIdParam: appServicePlanModule.outputs.aspId
-    linuxFxVersionParam: webApp.linuxFxVersion
-    webAppNameParam: webApp.name
-  }
-}
