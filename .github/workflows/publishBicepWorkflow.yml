@@ -1,4 +1,4 @@
-name: Caller workflow publish Bicep templates
+name: Caller workflow publish Bicep 
 
 on:
   push:
