@@ -24,3 +24,5 @@ resource appServicePlan 'Microsoft.Web/serverfarms@2020-12-01' = {
 }
 
 output aspId string = appServicePlan.id
+
+//small change
