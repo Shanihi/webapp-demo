@@ -1,4 +1,4 @@
-name: Reusable workflow publish ACR test
+name: Reusable workflow publish ACR testt
 
 on:
   workflow_call:
