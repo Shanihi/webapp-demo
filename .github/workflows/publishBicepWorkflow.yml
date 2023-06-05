@@ -1,5 +1,6 @@
 name: Caller workflow publish Bicep 
 
+# triggered when push is made to main 
 on:
   push:
     branches:
@@ -11,29 +12,35 @@ permissions:
 
 jobs:
   publish_appserviceplan:
+    # trigger for reusable workflow to start
     uses: ./.github/workflows/reusablePublishWorkflow.yml
     with:
       MODULE_NAME: appserviceplan
       MODULE_REGISTRY_SERVER: avanadeBicepContainerRegistry.azurecr.io
       MODULE_FILE_PATH: ./modules/appServicePlan.bicep 
       MODULE_METADATA_FILE_PATH: metadata.json
+    # inherits secrets from reusable workflow
     secrets: inherit
       
   publish_sqldatabase:
+    # trigger for reusable workflow to start
     uses: ./.github/workflows/reusablePublishWorkflow.yml
     with:
       MODULE_NAME: sqldatabase
       MODULE_REGISTRY_SERVER: avanadeBicepContainerRegistry.azurecr.io
       MODULE_FILE_PATH: ./modules/sqlDatabase.bicep 
       MODULE_METADATA_FILE_PATH: metadata.json
+    # inherits secrets from reusable workflow
     secrets: inherit
 
   publish_webapp:
+    # trigger for reusable workflow to start
     uses: ./.github/workflows/reusablePublishWorkflow.yml
     with:
       MODULE_NAME: webapp
       MODULE_REGISTRY_SERVER: avanadeBicepContainerRegistry.azurecr.io
       MODULE_FILE_PATH: ./modules/webApp.bicep 
       MODULE_METADATA_FILE_PATH: metadata.json
+    # inherits secrets from reusable workflow
     secrets: inherit
 

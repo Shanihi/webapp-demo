@@ -5,17 +5,20 @@ param sqlDB object
 param keyVault object
 param secretNameKeyVault string = 'secretPasswordSql'
 
+// conditional deployment. Use 'new' for deployment and 'existing' to skip deployment
 @allowed([
   'new'
   'existing'
 ])
 param newOrExisting string = 'new'
 
+// Key Vault for storing sensitive data like database password
 resource kv 'Microsoft.KeyVault/vaults@2022-11-01' existing = {
   name: keyVault.name
   scope: resourceGroup(keyVault.resourceGroup)
 } 
 
+// module alias used for Bicep registry path with latest tag version
 module appServicePlanModule 'br/CoreModules:appserviceplan:latest' = if (newOrExisting == 'new') {
   name: appServicePlan.name
   params: {
@@ -25,7 +28,7 @@ module appServicePlanModule 'br/CoreModules:appserviceplan:latest' = if (newOrEx
     appServiceKindParam: appServicePlan.kind
   }
 }
-
+// module alias used for Bicep registry path with latest tag version
 module webAppModule 'br/CoreModules:webapp:latest' = if (newOrExisting == 'new') {
   name: webApp.name
   params: {
@@ -34,7 +37,7 @@ module webAppModule 'br/CoreModules:webapp:latest' = if (newOrExisting == 'new')
     webAppNameParam: webApp.name
   }
 }
-
+// module alias used for Bicep registry path with latest tag version
 module sqlDBserverModule 'br/CoreModules:sqldatabase:latest' = if (newOrExisting == 'new') {
   name: sqlServer.name
   params: {

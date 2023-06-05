@@ -1,6 +1,7 @@
 {
 	"moduleAliases": {
 		"br": {
+			// module alias used in main.bicep 
 			"CoreModules": {
 				"registry": "avanadeBicepContainerRegistry.azurecr.io"
 			}

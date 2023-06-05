@@ -1,5 +1,6 @@
-name: Deploy Template 
+name: Reusable/Called workflow deployment 
 
+# triggered when called from caller workflow
 on:
   workflow_call:
     inputs:
@@ -14,11 +15,13 @@ jobs:
   validate:
      runs-on: ubuntu-latest
      steps:
+     # checkout code
      - uses: actions/checkout@v2
      - uses: azure/login@v1
-       with: 
+       with: # set azure credentials secret as an input
         creds: ${{ secrets.AZURE_CREDENTIALS_CLIENT }}
 
+     # checks environment type and runs only if it's prod
      - if: inputs.environmentType == 'prod'
        uses: azure/arm-deploy@v1
        name: Run what-if

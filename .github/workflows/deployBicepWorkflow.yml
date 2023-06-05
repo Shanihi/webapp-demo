@@ -1,5 +1,6 @@
 name: Caller workflow deploy Azure resources
 
+# triggered when push is made to main 
 on:
   push:
     branches:
@@ -12,17 +13,22 @@ permissions:
 jobs:
   deploy_dev:
     name: Deploy to DEV
-    uses: ./.github/workflows/reusableDeployBicepFileWorkflow.yml
+    # trigger for reusable workflow to start
+    uses: ./.github/workflows/reusableDeployBicepFileWorkflow.yml 
     with:
       environmentType: dev
       resourceGroupName: fakeClientDevRG
+    # inherits secrets from reusable workflow
     secrets: inherit 
       
   deploy_prod:
     name: Deploy to PROD
+    # dependend on deploy_dev job to finish before starting
     needs: deploy_dev
+    # trigger for reusable workflow to start
     uses: ./.github/workflows/reusableDeployBicepFileWorkflow.yml
     with:
       environmentType: prod
       resourceGroupName: fakeClientProdRG 
+    # inherits secrets from reusable workflow
     secrets: inherit 

@@ -1,5 +1,6 @@
-name: Reusable workflow publish ACR test
+name: Reusable/Called workflow publishing to ACR 
 
+# triggered when called from caller workflow
 on:
   workflow_call:
     inputs:
@@ -24,7 +25,7 @@ jobs:
     - uses: actions/checkout@v2
     - uses: azure/login@v1
       name: Sign in to Azure
-      with:
+      with: # set azure credentials secret as an input
        creds: ${{ secrets.AZURE_CREDENTIALS_CLIENT }}
     - name: Run Bicep linter
       run: az bicep build --file ${{ inputs.MODULE_FILE_PATH }}
@@ -37,7 +38,7 @@ jobs:
     - uses: actions/checkout@v2
     - uses: azure/login@v1
       name: Sign in to Azure
-      with:
+      with: # set azure credentials secret as an input
        creds: ${{ secrets.AZURE_CREDENTIALS_CLIENT }}
     - name: Get module version number
       run: |
