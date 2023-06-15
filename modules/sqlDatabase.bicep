@@ -1,6 +1,5 @@
 param serverNameParam string
 param administratorLoginParam string
-
 @secure()
 param administratorLoginPasswordParam string
 param serverVersionParam string
@@ -9,6 +8,7 @@ param minimalTlsVersionPeram string
 param primaryUserAssignedIdentityIdParam string
 param publicNetworkAccessParam string
 param restrictOutboundNetworkAccessParam string
+
 
 @description('Azure database for MySQL pricing tier')
 @allowed([
