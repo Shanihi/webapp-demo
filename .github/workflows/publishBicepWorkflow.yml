@@ -1,4 +1,4 @@
-name: Caller workflow publish Bicep 
+name: Caller workflow publish Bicep TODELETE
 
 # triggered when push is made to main 
 on:

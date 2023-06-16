@@ -6,6 +6,6 @@
     "\\modules",
     "\\registries"
   ],
-  "SelectedNode": "\\metadata.json",
+  "SelectedNode": "\\modules\\sqlDatabase.bicep",
   "PreviewInSolutionExplorer": false
 }
